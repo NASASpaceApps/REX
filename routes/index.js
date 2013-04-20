@@ -4,7 +4,7 @@
  */
 
 exports.index = function(req, res){
-  res.render('index', { title: 'Somethingrather' });
+  res.render('summary', { title: 'Somethingrather' });
 };
 exports.ajax = function(req, res){ 
 	res.render('ajax', {});

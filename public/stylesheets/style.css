@@ -240,15 +240,15 @@ a {
   font-family: gothic-med;
   font-size: 16pt;
   left: 68%;
-  bottom:15%;
+  bottom:10%;
 }
 
 #back img {
   position: absolute;
-  bottom: 20%;
-  height: 34px;
+  bottom: 5%;
+  height: 24px;
   width: 24px;
-  left: 75%;
+  left:  82%;
   -webkit-transition: all 0.7s ease;
 }
 .summaryColumn {
