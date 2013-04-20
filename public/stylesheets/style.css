@@ -40,12 +40,53 @@ a {
 
 }
 
+#header{
+  width:100%;
+  height:130px;
+  display: block;
+  background-color: rgba(255,255,255,0.9);
+  margin:0;
+  position: relative;
+  box-shadow: 0 2px 10px 1px rgba(60, 60, 60, 0.6);
+}
+#logo {
+  float: left;
+  margin: 50px 0 0 30px;
+  height: 72px;
+  width:168px;
+}
+ 
+#logo img {
+  height: 72px;
+  width: 168px;
+  -webkit-transition: all 0.7s ease;
+}
+/*#logo img:hover {
+  -webkit-transform: rotateY(-45deg);
+}*/
+ 
+#top_links {
+  width: 300px;
+  height: 100px;
+  position: absolute;
+  top: 75%;
+  right: 0;
+}
+#top_links a {
+  margin-right: 20px;
+  font-size: 12pt;
+  color: #434343;
+  -webkit-transition: all 0.2s ease;
+  text-decoration: none;
+}
+#top_links a:hover {
+  color: #9FCE62;
+}
+
 .landingMain {
   width: 800px;
   margin: 100px auto 0 auto;
   height: 500px;
-  background: rgba(230,230,230,0.7);
-  border-radius: 20px;
   display: block;
   position: relative;
 
@@ -58,20 +99,20 @@ a {
 }
 
 .anti_break {
-  width: 65%;
+  width: 80%;
   position: relative;
   display: inline-block;
 }
 
 .inputLocation {
-  width: 89%;
+  width: 95%;
+  padding-left: 5%;
   display: inline-block;
   height: 1.9em;
   font-family: gothic-med;
   font-size: 13pt;
   vertical-align: top;
-  padding-left: 5%;
-  margin: 0 0 0 30px;
+  margin: 0;
 }
 
 .get_started_button {
@@ -98,10 +139,12 @@ a {
 }
 
 .map_bar {
-  background-color: #fff;
   display: block;
   width: 720px;
-  margin: auto auto 10px auto;
+  height: 200px;
+  top: 20%;
+  position: absolute;
+  margin: 0 0 0 40px;
 }
 
 .map_canvas {
@@ -124,4 +167,10 @@ a {
   margin-top: 14%;
   position: absolute;
   display: inline-block;
+}
+
+.map_search_inner {
+  width: 90%;
+  position: absolute;
+  left: 5%
 }
