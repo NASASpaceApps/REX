@@ -1,5 +1,23 @@
 extends layout
+
+block head
+	script(src='/javascripts/location.js')
+	script(src='https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=true')
+
+
 block content
 	script(src="../javascripts/index.js")
 	div(class="landingMain")
+		div(class="title")
+		div(class="map_bar")
+			div(class="map_canvas")
+			div(class="map_search")
+				div(class="map_search_inner")
+					div(class="anti_break")
+						input(type="text", class="inputLocation", id="location")
+					div(class="get_started_button")
+						div(class="get_started_text")
+							|GET STARTED
+
+
 		
