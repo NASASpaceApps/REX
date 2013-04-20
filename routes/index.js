@@ -19,7 +19,10 @@ exports.overview = function (req, res) {
 }
 exports.sendCoordinates = function (req, res){
 	console.log(req.body);
-	//solarObject.getEverything(function(a) {
-	//	console.log(a);
-	//});
+	solarObject.getRating(req.body.data[0], req.body.data[1], function(a) {
+		console.log(a);
+	});
+}
+exports.summary = function(req, res) {
+	res.render("summary", {});
 }

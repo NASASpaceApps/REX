@@ -56,6 +56,9 @@
 	background-color: #5eb38c;
 	position:relative;
 }
+.column_top_box:hover{
+	background-color: #9FCE62;
+}
 .column_top_box img {
 	width:80%;
 	margin-left: 10%;

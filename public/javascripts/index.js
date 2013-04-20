@@ -6,7 +6,7 @@ $(document).ready(function() {
 		$.ajax({
 			type: 'post',
 			url: '/sendCoordinates',
-			data: {data: "aaa"},
+			data: {data: coordinates},
 			success:function() {
 				console.log('sent');
 			}
@@ -50,7 +50,6 @@ $(document).ready(function() {
 						"-webkit-transition": "all 1s ease"}).addClass("slide_column")
 					
 					setTimeout(function() {
-						$(".slide_column").css({"left": "18.5%", "margin-left": "3%", "margin-right": "3%"});
 					}, 100)
 
 					$(".column").each(function() {
@@ -60,10 +59,24 @@ $(document).ready(function() {
 
 					$(".slide_column").click(function(e2) {
 						$(e2.target).remove();
+						$(".summaryContainer").remove();
 						$(".column").each(function() {
 							$(this).removeClass("disabled");
 						})
 					})
+					setTimeout(function() {
+						$.ajax({
+							type: "get",
+							url: "/summary",
+							success: function(data) {
+								$(".overview_columns").append(data);
+								setTimeout(function() {
+									$(".slide_column").css({"left": "12.5%", "margin-left": "3%", "margin-right": "3%"});
+									$(".summaryContainer").css("left", "29.5%");
+								}, 1);
+							}
+						});
+					}, 1000);
 
 				})
 			}
