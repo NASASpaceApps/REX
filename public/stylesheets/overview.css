@@ -1,19 +1,104 @@
+.location_home {
+	position: absolute;
+	left:0;
+	top: 20%;
+	height: 30%;
+	width: 2%;
+	background-color: #434343;
+}
+.location_home .location_name {
+	font-size: 100%;
+	color: white;
+	text-decoration: none;
+	height: 20%;
+	font-family: gothic-med;
+	margin: 170% 0 0 -160%;
+	width:500%;
+	-webkit-transform: rotate(-90deg);
+}
+.location_home img {
+	width:100%;
+	height:20%;
+}
 .overview_columns {
 	width:100%;
 	height:100%;
 	margin: 5% 0 0 0;
-	background-color: white;
+	position: absolute;
+	top: 0;
+	left: 200%;
+	-webkit-transition: all 1s ease;
 }
 .column {
 	display: inline-block;
 	width: 14%;
 	margin: 0 3% 0 3%;
 	height: 100%;
-	background-color: #434343;
+	background-color: #cdcccc;
+	position: relative;
 }
 .solar_column {
 	margin: 0 3% 0 21.5%;
 }
 .geo_column {
 	margin: 0 21.5% 0 3%;
+}
+.column_title {
+	font-size: 12pt;
+	padding: 15% 0 10% 0;
+	font-family: gothic-med;
+	color: white;
+	text-align: center;
+}
+.column_top_box {
+	width:100%;
+	height:35%;
+	background-color: #5eb38c;
+	position:relative;
+}
+.column_top_box img {
+	width:80%;
+	margin-left: 10%;
+	height:60%;
+	display:inline-block;
+}
+.column_ratings_box {
+	height:4%;
+	width:95%;
+	font-family: gothic-med;
+	font-size:90%;
+	color: white;
+	padding: 1% 0 0 5%;
+	background-color: #434343;
+}
+.rating_container {
+	width: 60%;
+	height: 100%;
+	float:right;
+	position: relative;
+}
+.rating_circle {
+	height: 60%;
+	width: 14%;
+	margin: 3% 0 0 3%;
+	background-color: #434343;
+	border-radius: 50%;
+	display: inline-block;
+	border: solid 1px #9FCE62;
+}
+.column .next {
+	width: 34px;
+	height: 24px;
+	margin: -5px 0 0 0;
+}
+.column .next_container {
+	width: 50%;
+	height: 24px;
+	position: absolute;
+	bottom: 10px;
+	right: 1%;
+	left: 50%;
+	padding: 10px 0 0 0;
+	vertical-align: top;
+	font-family: gothic-med;
 }
