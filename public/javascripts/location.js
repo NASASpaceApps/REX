@@ -1,5 +1,6 @@
 var geocoder, results_found = false;
 
+var coordinates= [0,0];
 function codeAddress(address, map_canvas) {
   geocoder.geocode( { 'address': address}, function(results, status) {
     if (status == google.maps.GeocoderStatus.OK) {
@@ -8,6 +9,13 @@ function codeAddress(address, map_canvas) {
           map: map,
           position: results[0].geometry.location
       });
+
+
+      coordinates[0] = results[0].geometry.location.jb;
+      coordinates[1] = results[0].geometry.location.kb;
+
+      console.log(coordinates);
+
       $("#long").val(results[0].geometry.location.Za);
       $("#lat").val(results[0].geometry.location.$a);
     } else {
@@ -15,6 +23,13 @@ function codeAddress(address, map_canvas) {
     }
   });
 }
+
+$.ajax({
+  type:"post", url:"url", success:function(data){
+    //dostuff
+  }
+
+})
 
 $(function(){
   console.log("vbkaslkfnas");
