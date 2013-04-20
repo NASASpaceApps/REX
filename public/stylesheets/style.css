@@ -5,3 +5,22 @@ body {
 a {
   color: #00b7ff;
 }
+@font-face {
+  font-family: title;
+  src: url('fonts/coolvetica.rg.ttf');
+}
+.landingMain {
+  width: 800px;
+  margin: 100px 0 0 10%;
+  height: 500px;
+  background: rgba(230,230,230,0.7);
+  border: solid 2px #333;
+  border-radius: 20px;
+  display: inline-block;
+}
+.title {
+  font-size: 40pt;
+  color: #333;
+  font: title;
+  margin: 40px 0 0 30px;
+}
