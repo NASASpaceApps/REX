@@ -7,5 +7,6 @@ Google Doc resources: https://drive.google.com/folderview?id=0B-WVKc463bFaTEhoZn
 
 
 Chat: http://freenode.net/  goto WEBCHAT, channel #nasa_rex
+Revisit: Meeting Notes
 
 
