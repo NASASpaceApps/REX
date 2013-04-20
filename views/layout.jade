@@ -1,9 +1,10 @@
 doctype 5
 html
-  head
-    title= title
-    link(rel='stylesheet', href='/stylesheets/style.css')
-    script(src="http://code.jquery.com/jquery-1.9.1.min.js")
+	head
+		title= title
+		link(rel='stylesheet', href='/stylesheets/style.css')
+		script(src="http://code.jquery.com/jquery-1.9.1.min.js")
 
-  body
-    block content
+	body
+		include header
+		block content
