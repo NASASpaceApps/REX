@@ -20,7 +20,7 @@ $(function(){
   console.log("vbkaslkfnas");
   map_canvas = $(".map_canvas");
   geocoder = new google.maps.Geocoder();
-  var latlng = new google.maps.LatLng(43.4701302, -80.5357712);
+  var latlng = new google.maps.LatLng(43.647566,-79.384847);
   var mapOptions = {
     disableDefaultUI: true,
     zoom: 12,

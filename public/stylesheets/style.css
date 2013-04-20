@@ -19,16 +19,35 @@ a {
   font-family: gothic-med;
   src: url('GothamRnd-Medium.otf');
 }
+
+::-webkit-input-placeholder { /* WebKit browsers */
+    color:    #000;
+    font-family: gothic-med;
+}
+:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+    color:    #000;
+    font-family: gothic-med;
+
+}
+::-moz-placeholder { /* Mozilla Firefox 19+ */
+    color:    #000;
+    font-family: gothic-med;
+
+}
+:-ms-input-placeholder { /* Internet Explorer 10+ */
+    color:    #000;
+    font-family: gothic-med;
+
+}
+
 .landingMain {
   width: 800px;
   margin: 100px auto 0 auto;
   height: 500px;
   background: rgba(230,230,230,0.7);
-  border: solid 2px #333;
   border-radius: 20px;
   display: block;
   position: relative;
-
 
 }
 .title {
@@ -47,7 +66,9 @@ a {
 .inputLocation {
   width: 89%;
   display: inline-block;
-  font-size: 2em;
+  height: 1.9em;
+  font-family: gothic-med;
+  font-size: 13pt;
   vertical-align: top;
   padding-left: 5%;
   margin: 0 0 0 30px;
