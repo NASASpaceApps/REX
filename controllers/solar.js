@@ -7,12 +7,13 @@ var solar = (function() {
 	// Foo instances can access the private static
 	solar.prototype.getEverything = function(returnFun) {
 	    this._getEverythingReturnFun = returnFun;
-	    return this._bar;
+	    returnFun("solar: testing");
 	};
 	solar.prototype.getEverythingCallback = function(rows) {
 	    this._getEverythingReturnFun(rows);
 	};
 	
-	return Foo;
+	return solar;
 })();
 
+module.exports = solar;
