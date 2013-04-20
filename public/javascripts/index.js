@@ -1,7 +1,17 @@
 $(document).ready(function() {
 	$(".get_started_button").bind("click", function(e) {
 		e.preventDefault();
-		console.log('clicked')
+		console.log(coordinates)
+
+		$.ajax({
+			type: 'post',
+			url: '/sendCoordinates',
+			data: {data: "aaa"},
+			success:function() {
+				console.log('sent');
+			}
+		});
+
 		$.ajax({
 			type: 'get',
 			url: '/overview',
@@ -18,7 +28,7 @@ $(document).ready(function() {
 
 				$(".location_home").bind("click", function(e) {
 					e.preventDefault();
-					$("body").css({"background-image": "/images/background.png"});
+					$("body").css({"background-image": "/images/background.png", "background-color": "none"});
 					console.log("cliiiiicked")
 					$(".location_home").remove();
 					$(".overview_columns").removeClass("animate_left_no3d");
@@ -28,6 +38,7 @@ $(document).ready(function() {
 						$(".overview_columns").remove();
 					}, 1000)
 				})
+
 				$(".column").click(function(e) {
 					if ($(e.target).hasClass("disabled"))
 						return
