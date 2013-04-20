@@ -12,3 +12,6 @@ exports.ajax = function(req, res){
 exports.overview = function (req, res) {
 	res.render('overview', {});
 }
+exports.sendCoordinates = function (req, res){
+
+}

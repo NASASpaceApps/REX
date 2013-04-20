@@ -12,6 +12,7 @@ var express = require('express')
   , http = require('http')
   , path = require('path');
 
+
 var app = express();
 
 app.configure(function(){
@@ -37,7 +38,8 @@ app.configure('development', function(){
 app.get('/', routes.index);
 app.get('/users', user.list);
 app.get('/ajax', routes.ajax);
-app.get('/overview', routes.overview)
+app.get('/overview', routes.overview);
+app.post('/sendCoordinates', routes.sendCoordinates)
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log("Express server listening on port " + app.get('port'));
