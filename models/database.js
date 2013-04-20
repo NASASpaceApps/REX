@@ -34,7 +34,11 @@ var database = (function() {
 		  */
 	database.prototype.query = function(query, onSuccessFun){
 		console.log("database: query: "+query);
-		this._connection.query(query).success(onSuccessFun);
+		this._connection.query(query).success(onSuccessFun).failure(function(err){console.log("database: query: failure: "+err)});
+	}
+	
+	database.prototype.escape = function(data){
+		return this._connection.constructor.Utils.escape(data)
 	}
 	
 	return database;
