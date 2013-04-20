@@ -4,6 +4,7 @@
  */
 
 var express = require('express')
+  , solar = require('./controllers/solar.js')
   , routes = require('./routes')
   , user = require('./routes/user')
   , http = require('http')
@@ -12,6 +13,8 @@ var express = require('express')
 var app = express();
 
 app.configure(function(){
+  var mySolar = new solar();
+  mySolar.getEverything(function(message){console.log("SOLAR-BB-TEST: ",message);});
   app.set('port', process.env.PORT || 3000);
   app.set('views', __dirname + '/views');
   app.set('view engine', 'jade');
