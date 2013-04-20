@@ -9,3 +9,6 @@ exports.index = function(req, res){
 exports.ajax = function(req, res){ 
 	res.render('ajax', {});
 }
+exports.overview = function (req, res) {
+	res.render('overview', {});
+}
