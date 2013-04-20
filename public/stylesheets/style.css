@@ -1,13 +1,15 @@
 body {
   padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  background-image: url("../images/background.jpg");
+  background-size: 100%;
 }
 a {
   color: #00b7ff;
 }
 @font-face {
   font-family: title;
-  src: url('fonts/coolvetica.rg.ttf');
+  src: url('coolvetica rg.ttf');
 }
 .landingMain {
   width: 800px;
@@ -21,6 +23,6 @@ a {
 .title {
   font-size: 40pt;
   color: #333;
-  font: title;
+  font-family: title;
   margin: 40px 0 0 30px;
 }
