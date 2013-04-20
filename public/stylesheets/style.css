@@ -24,3 +24,15 @@ a {
   font: title;
   margin: 40px 0 0 30px;
 }
+
+.inputLocation {
+  width: 400px;
+  height: 40px;
+  margin: 40px 0 0 30px;
+}
+
+
+#map_canvas {
+  width: 300px;
+  height: 300px;
+}

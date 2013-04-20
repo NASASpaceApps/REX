@@ -1,8 +1,16 @@
 extends layout
 
+block head
+	script(src='/javascripts/location.js')
+
 block content
 	div(class="landingMain")
 		div(class="title")
-			| #{title}
-		div(class="locationSearch")
+			| #{title} 
+			br
+			| Where are you?
+			br
+			input(type="text", class="inputLocation", id="location")
+			#map_canvas
+
 		
