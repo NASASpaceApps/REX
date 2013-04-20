@@ -97,6 +97,7 @@ a {
   color: #333;
   font-family: title;
   margin: 40px 0 0 30px;
+  display: inline-block;
 }
 
 .anti_break {
