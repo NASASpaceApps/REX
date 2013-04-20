@@ -24,12 +24,6 @@ function codeAddress(address, map_canvas) {
   });
 }
 
-$.ajax({
-  type:"post", url:"url", success:function(data){
-    //dostuff
-  }
-
-})
 
 $(function(){
   console.log("vbkaslkfnas");

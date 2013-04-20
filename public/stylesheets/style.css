@@ -5,6 +5,7 @@ body {
   width:100%;
   height:100%;
   margin: 0;
+  overflow: hidden;
 }
 a {
   color: #00b7ff;
@@ -91,7 +92,13 @@ a {
   height: 500px;
   display: block;
   position: relative;
-
+}
+.indexMain {
+  width: 70%;
+  margin: 0 0 0 15%;
+  height: 500px;
+  display: block;
+  position: relative;
 }
 .title {
   font-size: 35pt;
@@ -103,6 +110,7 @@ a {
   font-family: gothic-med;
   display: inline-block;
   text-align: center;
+  -webkit-transition: all 1s ease;
 }
 
 .anti_break {
@@ -121,7 +129,13 @@ a {
   vertical-align: top;
   margin: 0;
 }
-
+.map_search img {
+  width:50px;
+  height:40px;
+  position:absolute;
+  z-index: 10;
+  left: -10px;
+}
 .get_started_button {
   width:20%;
   vertical-align: top;
@@ -153,6 +167,7 @@ a {
   top: 70%;
   position: absolute;
   margin: 0 0 0 5%;
+  -webkit-transition: all 1s ease;
 }
 
 .map_canvas {
@@ -182,6 +197,22 @@ a {
   width: 90%;
   position: absolute;
   left: 5%
+}
+
+.animate_left {
+  -webkit-transform: translate3d(-200%, 0 ,0);
+}
+.animate_left_no3d {
+  left: 0 !important;
+}
+.animate_center {
+  -webkit-transform: translate3d(0,0,0);
+}
+.animate_right {
+  -webkit-transform: translate3d(200%, 0, 0);
+}
+.disabled {
+  opacity: 0.7;
 }
 
 .summaryContainer {
