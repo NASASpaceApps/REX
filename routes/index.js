@@ -78,7 +78,7 @@ exports.summary = function(req, res) {
 //Getting the prediction information
 exports.predict = function(req, res) {
 	var coordinates = [req.body.data[0], req.body.data[1]];
-	console.log(coordinates)
+	console.log(coordinates);
 	solarObject.getPrediction(coordinates[0], coordinates[1], function(a) {
 		//back to the callback with you
 			res.send(a)

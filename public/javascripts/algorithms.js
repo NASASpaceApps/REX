@@ -61,7 +61,8 @@ function processData(data) {
 		organizedData[w][y] = data[i].unit;
 		y++;
 	}
-	//Getting the average units per yer
+	//Getting the average units per yer.
+	//Defining like this to avoid pushing. 
 	var avgs=[0,0,0,0,0,0,0,0,0,0,0];
 	for (var m = 0; m < 51; m++){
 		for (var n = 0; n < organizedData[m].length; n++){
