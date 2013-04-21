@@ -39,7 +39,7 @@ var wind = (function() {
 	 *       5          |           > 800           |        Superb               
 	 **/
 	wind.prototype.getRatingCallback = function(data) {
-		console.log("wind: getRatingCallback ");
+		console.log("wind: getRatingCallback ", data);
 		if(!data[0]){ // Data not available
 			console.log("wind: getRatingCallback: input data is empty")
 			returnFun(-1);

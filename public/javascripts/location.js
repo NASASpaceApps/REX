@@ -11,8 +11,8 @@ function codeAddress(address, map_canvas) {
       });
 
 
-      coordinates[0] = results[0].geometry.location.jb;
-      coordinates[1] = results[0].geometry.location.kb;
+      coordinates[1] = results[0].geometry.location.jb;
+      coordinates[0] = results[0].geometry.location.kb;
 
       console.log(coordinates);
 

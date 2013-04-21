@@ -36,7 +36,7 @@ var solar = (function() {
 	 * > 6             Excellent      
 	 **/
 	solar.prototype.getRatingCallback = function(data) {
-		console.log("solar: getRatingCallback ");
+		console.log("solar: getRatingCallback ", data);
 		if(!data[0]){ // Data not available
 			console.log("solar: getRatingCallback: input data is empty")
 			returnFun(-1);

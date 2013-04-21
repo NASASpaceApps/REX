@@ -87,8 +87,8 @@ a {
 }
 
 .landingMain {
-  width: 70%;
-  margin: 0 0 0 15%;
+  width: 1100px;
+  margin: 0 auto;
   height: 500px;
   display: block;
   position: relative;
@@ -130,11 +130,12 @@ a {
   margin: 0;
 }
 .map_search img {
-  width:50px;
-  height:40px;
+  width:35px;
+  height:25px;
   position:absolute;
   z-index: 10;
-  left: -10px;
+  left: 0px;
+  top: 7px;
 }
 .get_started_button {
   width:20%;
