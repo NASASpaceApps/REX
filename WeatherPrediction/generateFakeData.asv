@@ -1,0 +1,34 @@
+% NASA Space Challenge
+% April 19, 2013
+% Toronto, ROM
+% Hamid Tizhoosh
+clc
+
+% generate fake data
+n = 1000;   % number of data samples
+MyData = [];
+
+RegionType = 1;
+
+if RegionType==1
+    MinIrradiance = 10;
+    MaxIrradiance = 350;
+else 
+     MinIrradiance = 50;
+    MaxIrradiance = 740;
+end
+% generate data
+for j=1:10
+    for i=1:52
+        midYear = trimf(i,[1 26 52]);
+        SunData(i,j) = floor(MinIrradiance+(MaxIrradiance-MinIrradiance)*midYear);
+        if rand<0.5
+            delta = -1*(0.01+0.1*rand)*MaxIrradiance;
+        else
+            delta = (0.01+0.1*rand)*MaxIrradiance;
+        end
+        SunData(i,j) = floor(SunData(i,j) + delta);
+    end
+end
+
+  plot(SunData)
