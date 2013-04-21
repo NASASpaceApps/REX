@@ -6,7 +6,7 @@
 // Ported from Matlab to JS
 
 	var maxError = 100000000;
-	var maxIter = 5000;
+	var maxIter = 50000;
 	var errorTolerance  = 0.1;
 	var A=[0,0];
 	var bestA=[0];
@@ -14,12 +14,20 @@
 
 console.log("fsfs")
 function fakedata(){
-	 var fake=[1,2,3,4,5,6,7,6,5,4,3,2,1];
-	 var result = estimateFuncParam(fake);
+
+var arr = Array(52);
+for(var x = 0;x<52;x++){
+	arr[x] = Array(10);
+	for(var y = 0;y<10;y++){
+		arr[x][y] = Math.random()*5;
+	}
+}
+	 var result = PredictFuture(arr);
 	 console.log(result);
 }
 
 function estimateFuncParam(row) {
+
 	var size = row.length;
 	var numIter=0;
 
@@ -78,37 +86,38 @@ function PredictFuture(SunData){
 	}
 		
 	// start the prediction tool
-	for(var i = 1; i <=numWeeks; i++){
+	for(var i = 0; i <numWeeks; i++){
 		// get one row of data: teh same week for many years
 		//a = SunData(i,:);
-		var a = SunData[i].slice(0);
+		var a = SunData.slice();
+		a=a[i];
 		// based on that row estimate the parameters
 		var returnValue = estimateFuncParam(a);
 		var bigA = returnValue[0];
 		var maxError = returnValue[1];
 		// can we say the error is low?
-		var isErrorLow = 1 - (maxError < 1? maxError : 1);
+		var isErrorLow = 1 - ((maxError < 1)?maxError:1);
 		// Predict the next year
 		//SunDataFuture(i,1)  = (1-isErrorLow)*mean(a) + isErrorLow*sum(A.*a(1:length(a)-1));
-		SunDataFuture[i][1] = (1 - isErrorLow) * mean(a) + isErrorLow * sum(vectorMultiplication(A,a,a.length-1);
+		SunDataFuture[i][1] = (1 - isErrorLow) * mean(a) + isErrorLow * sum(vectorMultiplication(A,a,a.length-1));
 		// Predict the second year
 		//b = [a(2:length(a)) SunDataFuture(i,1)];
 		var b = Array(a.length);
-		for(var x = 0; x < data.length - 1; x++){
+		for(var x = 0; x < b.length - 1; x++){
 			b[x] = a[x+1];
 		}
-		b[a.length-1] = SunDataFuture(i,1);
+		b[a.length-1] = SunDataFuture[i][1];
 		//SunDataFuture(i,2) = (1-isErrorLow)*mean(b) + isErrorLow*sum(A.*b(1:length(b)-1));
-		SunDataFuture(i,2) = (1 - isErrorLow) * mean(b) + isErrorLow * sum(vectorMultiplication(A,a,a.length-1);
+		SunDataFuture[i][2] = (1 - isErrorLow) * mean(b) + isErrorLow * sum(vectorMultiplication(A,a,a.length-1));
 		// Predict the third year
 		//b = [a(3:length(a)) SunDataFuture(i,1) SunDataFuture(i,2)];
-		for(var x = 0; x < data.length - 2; x++){
+		for(var x = 0; x < b.length - 2; x++){
 			b[x] = a[x+2];
 		}
-		b[a.length-2] = SunDataFuture(i,1);
-		b[a.length-1] = SunDataFuture(i,2);
+		b[a.length-2] = SunDataFuture[i][1];
+		b[a.length-1] = SunDataFuture[i][2];
 		//SunDataFuture(i,3) = (1-isErrorLow)*mean(b) + isErrorLow* sum(A.*b(1:length(b)-1));
-		SunDataFuture(i,3) = (1 - isErrorLow) * mean(b) + isErrorLow * sum(vectorMultiplication(A,a,a.length-1);
+		SunDataFuture[i][3] = (1 - isErrorLow) * mean(b) + isErrorLow * sum(vectorMultiplication(A,a,a.length-1));
 	}
 	return SunDataFuture;
 }
@@ -116,7 +125,7 @@ function PredictFuture(SunData){
 function mean(data){
 	var mean = 0;
 	for(var x = 0; x < data.length; x++){
-		mean += data[x] / scores[x];
+		mean += data[x] / data.length;
 	}
 	return mean;
 }

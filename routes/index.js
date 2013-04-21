@@ -9,7 +9,7 @@
 var solar = require("../controllers/solar.js");
 var solarObject = new solar();
 exports.index = function(req, res){
-  res.render('index', { title: 'Somethingrather' });
+  res.render('index', { title: 'REX-Renewable Energy Explorer' });
 };
 exports.ajax = function(req, res){ 
 	res.render('ajax', {});
