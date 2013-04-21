@@ -42,26 +42,27 @@ var geothermal = (function() {
 			geothermalReturnFun(-1);
 		}else{
 			var minDepthRating;
-			if(data[0].minDepth < 6){
+			if(data[0].minDepth <= 10){
 				minDepthRating = 3;
-			}else if(data[0].minDepth <= 10){
+			}else if(data[0].minDepth <= 40){
 				minDepthRating = 2;
 			}else{
 				minDepthRating = 1;
 			}
-			var gradientRating;
-			if(data[0].unit < 20){
-				gradientRating = 1;
-			}else if(data[0].unit < 50){
-				gradientRating = 2;
-			}else{
-				gradientRating = 3;
-			}
-			if(minDepthRating < gradientRating){
+////// Removing gradient rating
+//			var gradientRating;
+//			if(data[0].unit <= 10){
+//				gradientRating = 1;
+//			}else if(data[0].unit < 40){
+//				gradientRating = 2;
+//			}else{
+//				gradientRating = 3;
+//			}
+//			if(minDepthRating < gradientRating){
 				geothermalReturnFun(minDepthRating);
-			}else{
-				geothermalReturnFun(gradientRating);
-			}
+//			}else{
+//				geothermalReturnFun(gradientRating);
+//			}
 		}
 	};
 	
