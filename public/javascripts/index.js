@@ -1,4 +1,6 @@
+google.load('visualization', '1.0', {'packages':['corechart']})
 $(document).ready(function() {
+	$("#location").focus();
 	//Clicking the get started button
 	$(".get_started_button").bind("click", function(e) {
 		//Stopping the default mouse behaviour
@@ -8,6 +10,7 @@ $(document).ready(function() {
 
 		//Don't allow a transition if the coordinates aren't set (user hasn't hit enter)
 		if (!coordinates[0] && !coordinates[1]) {
+			$("#location").attr("placeholder", "Please enter a location first.")
 			return
 		}
 
@@ -43,7 +46,8 @@ $(document).ready(function() {
 						$(".map_bar").addClass("animate_left");
 
 						//Make the bg transparent
-						$("body").prepend("<a class='location_home' href='#'><div class='location_name'>"+locationName+"</div></a>")
+						$("body").prepend("<a class='location_home' href='#'><div class='location_name'>"+locationName+"</div><img src='images/location white.png'></a>")
+						$(".location_home").addClass("location_home_animate");
 						$(".landingMain").append(data);
 						$(".background_image").css("opacity", "0");
 
@@ -158,19 +162,10 @@ $(document).ready(function() {
 											$(".slide_column").css({"left": "12.5%", "margin-left": "3%", "margin-right": "3%"});
 											$(".summaryContainer").css("left", "29.4%");
 											$(".slide_column").find(".next_container").find("img").css("-webkit-transform", "rotateY(180deg)");
-											$("#predict_button").find("img").click(function() {
-												$.ajax({
-													type: 'post',
-													url: '/predict',
-													data: {data: coordinates},
-													success: function(data) {
-
-														var yearlyAverages = processData(data);
-														console.log(yearlyAverages);
-
-													}
-												})
-											})
+											//$("#predict_button").find("img").click(function() {
+											
+											//})
+							       
 											console.log(resource)
 											if (resource == "wind") {
 												$("#kwhTitle").html((ratings.windInfo[0].unit / 1000).toFixed(2) + " kwh/m&#178;");
@@ -183,7 +178,7 @@ $(document).ready(function() {
 											} else if (resource == "geo") {
 												$("#fun_fact").html("At the core of the Earth, thermal energy is created by radioactive decay and temperatures may reach over 5000 degrees Celsius (9,000 degrees Fahrenheit).")
 												//$(".prof_links").html("<a href='http://www.silverstaterenewables.com/'>Silver State Renewables, Inc</a> <br> <br><a href='http://www.quantumgeothermal.com/'>Quantum Geothermal</a>")
-												$("#kwhTitle").html(ratings.geoInfo[0].unit + " units");
+												$("#kwhTitle").html(ratings.geoInfo[0].unit + " &#186;C/m");
 											}
 											function closemap() {
 												$(".prof_map").html("");
@@ -198,8 +193,46 @@ $(document).ready(function() {
 													$(".prof_map").html('<iframe frameborder="no" height="325" scrolling="no" src="https://www.google.com/fusiontables/embedviz?viz=MAP&amp;q=select+col1+from+1uoGR-vX4Wmm76QExw446TXqKqr2oWGu8X1MQmew&amp;h=false&amp;lat=' + coordinates[1]+'&amp;lng=' + coordinates[0] + '&amp;z=11&amp;t=1&amp;l=col1&amp;y=2&amp;tmplt=2" width="200%"></iframe>')
 												}
 											})
-
+											$("#graph_container").append("<div class='graph_loading'><img src='images/loading3.gif'></img></div>")
 										}, 1);
+										setTimeout(function() {
+											$.ajax({
+												type: 'post',
+												url: '/predict',
+												data: {data: coordinates},
+												success: function(d) {
+													var yearlyAverages = processData(d);
+													console.log(yearlyAverages);
+													$("#graph_container").html("");
+									        var data = new google.visualization.DataTable();
+									        data.addColumn('string', 'Year');
+					                data.addColumn('number', 'kwh');
+					                var rows = [];
+					                for(var i =0; i < yearlyAverages.length; i++) {
+					                	rows.push([2005 + i +"", yearlyAverages[i]]);
+					                }
+					                data.addRows(rows);
+
+					                // Set chart options
+					                var options = {'title':'Resource Potential Over Time',
+					                               'width':$("#graph_container").width(),
+					                               'height':$("#graph_container").height() + 50,
+					                             		'colors': ['#9FCE62', '#5eb38c'],
+					                             		backgroundColor: '#434343',
+					                             		animation: {duration: 3, easing: 'in'},
+					                             		hAxis: {title: "Year", titleTextStyle: {color: 'white'}, textStyle: {color: "white"}, baselineColor: 'white', gridlines: {color: 'white'}},
+					                             		vAxis: {title: "kwh", titleTextStyle: {color: 'white'}, textStyle: {color: "white"}},
+					                             		titleTextStyle: {color: "white"},
+					                             		legend: {position: 'none'}
+																				};
+
+					                // Instantiate and draw our chart, passing in some options.
+					                var chart = new google.visualization.LineChart(document.getElementById('graph_container'));
+					                chart.draw(data, options);
+					                $("#graph_container").addClass("graph_animate");
+												}
+											})
+										}, 1000)
 									}
 								});
 							}, 1000);
