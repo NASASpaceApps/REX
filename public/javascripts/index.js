@@ -3,6 +3,7 @@ $(document).ready(function() {
 		e.preventDefault();
 		console.log(coordinates)
 
+
 		$.ajax({
 			type: 'post',
 			url: '/sendCoordinates',
@@ -12,6 +13,10 @@ $(document).ready(function() {
 			}
 		});
 
+		if (typeof locationName == 'undefined'){
+			locationName='Previous Page';
+		}
+
 		$.ajax({
 			type: 'get',
 			url: '/overview',
@@ -19,7 +24,7 @@ $(document).ready(function() {
 				$(".title").addClass("animate_left");
 				$(".map_bar").addClass("animate_left");
 
-				$("body").prepend("<a class='location_home' href='#'><div class='location_name'>Waterloo, On</div></a>")
+				$("body").prepend("<a class='location_home' href='#'><div class='location_name'>"+locationName+"</div></a>")
 				$(".landingMain").append(data);
 				setTimeout(function() {
 					$('.overview_columns').addClass("animate_left_no3d");
