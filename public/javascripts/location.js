@@ -27,8 +27,8 @@ function codeAddress(address, map_canvas) {
       });
 
       //skimming the coordinates because .location is messy.
-      coordinates[1] = results[0].geometry.location.jb;
-      coordinates[0] = results[0].geometry.location.kb;
+      coordinates[0] = results[0].geometry.location.jb;
+      coordinates[1] = results[0].geometry.location.kb;
 
       //Get the name of the place we're looking at.
       locationName=results[0].formatted_address;

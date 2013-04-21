@@ -28,6 +28,7 @@ var solar = (function() {
 	solar.prototype.getRating = function(userLongitude, userLatitude, callback) {
 		console.log("solar: getRating", userLongitude, userLatitude);
 		solarReturnFun = callback;
+		console.log("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHHHH")
 		this._parent.get(userLongitude, userLatitude, this.getRatingCallback)
 	}
 	/**
@@ -38,6 +39,7 @@ var solar = (function() {
 	 **/
 	solar.prototype.getRatingCallback = function(data) {
 		console.log("solar: getRatingCallback ", data);
+		console.log("BLABLABLA data:"+data+", BLA BLA BLA",data[0].unit);
 		if(!data[0]){ // Data not available
 			console.log("solar: getRatingCallback: input data is empty")
 			solarReturnFun(-1);
@@ -46,7 +48,7 @@ var solar = (function() {
 		}else if(data[0].unit < 5500){
 			solarReturnFun(2);
 		}else{
-			solarReturnFun(5);
+			solarReturnFun(3);
 		}
 	};
 
