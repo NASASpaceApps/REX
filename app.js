@@ -40,6 +40,7 @@ app.get('/users', user.list);
 app.get('/ajax', routes.ajax);
 app.get('/overview', routes.overview);
 app.get('/summary', routes.summary);
+app.post('/predict', routes.predict);
 app.post('/sendCoordinates', routes.sendCoordinates)
 
 

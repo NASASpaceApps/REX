@@ -148,6 +148,16 @@ $(document).ready(function() {
 											$(".slide_column").css({"left": "12.5%", "margin-left": "3%", "margin-right": "3%"});
 											$(".summaryContainer").css("left", "29.4%");
 											$(".slide_column").find(".next_container").find("img").css("-webkit-transform", "rotateY(180deg)");
+											$("#predict_button").find("img").click(function() {
+												$.ajax({
+													type: 'post',
+													url: '/predict',
+													data: {data: coordinates},
+													success: function(data) {
+
+													}
+												})
+											})
 											console.log(resource)
 											if (resource == "wind") {
 												$("#kwhTitle").html((ratings.windInfo[0].unit / 1000).toFixed(2) + " kwh/m&#178;");
