@@ -17,8 +17,8 @@ var app = express();
 
 app.configure(function(){
 //// Testing of output only
-//  var myEnergy = new wind();
-//  myEnergy.getRating(1,1,function(message){console.log("SOLAR-BB-TEST: ",message);});
+//  var myEnergy = new solar();
+//  myEnergy.getPrediction(1,1,function(message){console.log("SOLAR-BB-TEST: ",message);});
   app.set('port', process.env.PORT || 3000);
   app.set('views', __dirname + '/views');
   app.set('view engine', 'jade');
