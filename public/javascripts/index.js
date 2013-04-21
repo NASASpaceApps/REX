@@ -10,8 +10,12 @@ $(document).ready(function() {
 
 		//Don't allow a transition if the coordinates aren't set (user hasn't hit enter)
 		if (!coordinates[0] && !coordinates[1]) {
-			$("#location").attr("placeholder", "Please enter a location first.")
-			return
+			if ($("#location").val() != "")
+				codeAddress($("#location").val(), $(".map_canvas"));
+			else {
+				$("#location").attr("placeholder", "Please enter a location first.")
+				return
+			}
 		}
 
 		//Sending the coordinates to the server
@@ -114,6 +118,8 @@ $(document).ready(function() {
 							}
 							if ($(e.target).hasClass("disabled"))
 								return
+							//$(e.target).addClass("disabled");
+							//$(e.target).css("opacity", "1");
 							$(e.target).append("<div class='loading_spinner'><img src='images/loading.gif'></img></div>");
 							var resource = "";
 							if (e.target.id == "wind_column") {
@@ -165,9 +171,14 @@ $(document).ready(function() {
 										$(".overview_columns").append(data);
 										$(".loading_spinner").remove();
 										setTimeout(function() {
-											$(".slide_column").css({"left": "12.5%", "margin-left": "3%", "margin-right": "3%"});
-											$(".summaryContainer").css("left", "29.4%");
+											//$(".slide_column").css({"left": "12.5%", "margin-left": "3%", "margin-right": "3%"});
+											$(".slide_column").css({"left": "4.7%", "margin-left": "3%", "margin-right": "3%"});
+
+											//$(".summaryContainer").css("left", "29.4%");
+											$(".summaryContainer").css("left", "21.6%");
+
 											$(".slide_column").find(".next_container").find("img").css("-webkit-transform", "rotateY(180deg)");
+											$(".slide_column").find(".next_container").html("BACK" + $(".slide_column").find(".next_container").html().slice(4));
 											//$("#predict_button").find("img").click(function() {
 											
 											//})
@@ -175,20 +186,30 @@ $(document).ready(function() {
 											console.log(resource)
 											if (resource == "wind") {
 												$("#kwhTitle").html((ratings.windInfo[0].unit / 1000).toFixed(2) + " kwh/m&#178;");
-												$("#fun_fact").html("Between 2008 and 2012, wind power has provided 36.5% of all new generating capacity in the United States.")
+												//$("#fun_fact").html("Between 2008 and 2012, wind power has provided 36.5% of all new generating capacity in the United States.")
+												$("#enviro_text").html("<div class='powFactor'> 0 </div> <br> CO2 emissions")
+												$("#money_text").html("<div class='powFactor'>30% </div> <br> Tax Rebate in Nevada <br> ")
+
 												//$(".prof_links").html("<a href='http://www.advancedgreenbuilders.com'>Advanced Green Builders</a> <br> <br><a href='http://www.awstruepower.com/'>AWS True Power</a>")
 											} else if (resource == "solar") {
 												$("#kwhTitle").html(ratings.solarInfo[0].unit + " kwh");
-												$("#fun_fact").html("Every hour the sun beams onto Earth more than enough energy to satisfy global energy needs for an entire year.")
+												//$("#fun_fact").html("Every hour the sun beams onto Earth more than enough energy to satisfy global energy needs for an entire year.")
+												$("#enviro_text").html("<div class='powFactor'>80,000</div> <br> Lbs Less Carbon Dioxide Emissions")
+												$("#money_text").html("<div class='powFactor'>50%</div> <br> Tax Invencentives & Rebates")
+
 												//$(".prof_links").html("<a href='http://www.suntreksolar.com/'>Suntrek</a> <br> <br><a href='http://www.planitsolar.com/ '>Plan It Solar</a>") 
 											} else if (resource == "geo") {
-												$("#fun_fact").html("At the core of the Earth, thermal energy is created by radioactive decay and temperatures may reach over 5000 degrees Celsius (9,000 degrees Fahrenheit).")
+												//$("#fun_fact").html("At the core of the Earth, thermal energy is created by radioactive decay and temperatures may reach over 5000 degrees Celsius (9,000 degrees Fahrenheit).")
+												$("#enviro_text").html("<div class='powFactor'>72%</div> <br> Lower Energy Consumption")
+												$("#money_text").html("<div class='powFactor'>$1.00</div>  <br> To Heat or Cool a 2000sq ft home for a day")
+
 												//$(".prof_links").html("<a href='http://www.silverstaterenewables.com/'>Silver State Renewables, Inc</a> <br> <br><a href='http://www.quantumgeothermal.com/'>Quantum Geothermal</a>")
 												$("#kwhTitle").html(ratings.geoInfo[0].unit + " &#186;C/m");
 											}
 											function closemap() {
 												$(".prof_map").html("");
 												$("#close_map").css("display", "none");
+												$("#map_legend").css("display", "none");
 											}
 											$("#close_map").click(closemap);
 											$(".prof_links").find("a").click(function() {
@@ -196,6 +217,7 @@ $(document).ready(function() {
 													closemap();
 												} else {
 													$("#close_map").css("display", "inline-block");
+													$("#map_legend").css("display", "inline-block");
 													$(".prof_map").html('<iframe frameborder="no" height="325" scrolling="no" src="https://www.google.com/fusiontables/embedviz?viz=MAP&amp;q=select+col1+from+1uoGR-vX4Wmm76QExw446TXqKqr2oWGu8X1MQmew&amp;h=false&amp;lat=' + coordinates[1]+'&amp;lng=' + coordinates[0] + '&amp;z=11&amp;t=1&amp;l=col1&amp;y=2&amp;tmplt=2" width="200%"></iframe>')
 												}
 											})
