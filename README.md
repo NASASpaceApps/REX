@@ -13,4 +13,8 @@ Featuring a kick-ass UI, a rating system, machine-learning based weather predict
 
 ## What We Have ##
 
-![picture alt](https://github.com/NASASpaceApps/REX/blob/master/public/images/SS1.jpg "Title is optional")  
+[Landing Page Screenshot](https://github.com/NASASpaceApps/REX/blob/master/public/images/SS1.jpg) 
+
+## How to try it ##
+
+Install node and mysql. Clone this repo onto your local drive. Using mysql [   ]. Then, In the root of this directory in cmd/terminal, type 'node app.js'. Voila!
