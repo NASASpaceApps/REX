@@ -42,9 +42,9 @@ var geothermal = (function() {
 			geothermalReturnFun(-1);
 		}else{
 			var minDepthRating;
-			if(data[0].minDepth <= 10){
+			if(data[0].minDepth <= 22){
 				minDepthRating = 3;
-			}else if(data[0].minDepth <= 40){
+			}else if(data[0].minDepth <= 45){
 				minDepthRating = 2;
 			}else{
 				minDepthRating = 1;
