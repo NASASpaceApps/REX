@@ -3,6 +3,8 @@
  * Module dependencies.
  */
 
+
+//Defining our routes. 
 var express = require('express')
   , solar = require('./controllers/solar.js')
   , wind = require('./controllers/wind.js')
@@ -12,7 +14,7 @@ var express = require('express')
   , http = require('http')
   , path = require('path');
 
-
+//This is a hackathon, put it in express mode we don't have time to setup.
 var app = express();
 
 app.configure(function(){
@@ -35,6 +37,8 @@ app.configure('development', function(){
   app.use(express.errorHandler());
 });
 
+
+//more routes
 app.get('/', routes.index);
 app.get('/users', user.list);
 app.get('/ajax', routes.ajax);

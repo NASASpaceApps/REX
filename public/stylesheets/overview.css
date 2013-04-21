@@ -1,12 +1,12 @@
 .location_home {
 	position: absolute;
-	left:-20%;
+	left:-10%;
 	top: 20%;
 	height: 35%;
 	width: 3em;
 	z-index: 10;
 	background-color: #434343;
-	-webkit-transition: all 2s ease;
+	-webkit-transition: all 1s ease;
 }
 .location_home_animate {
 	left:0;

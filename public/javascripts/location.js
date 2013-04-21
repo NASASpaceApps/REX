@@ -50,6 +50,24 @@ $(function(){
   map_canvas = $(".map_canvas");
   geocoder = new google.maps.Geocoder();
 
+
+//Creating a new map style to get rid of the 'report an error' on google maps
+//because it was so close to the get started button.
+//YES this is okay by their TOS.
+ var MAP_STYLE = [
+    {
+        featureType: "road",
+        elementType: "all",
+        stylers: [
+            { visibility: "on" }
+        ]
+    }
+];
+    var styleOptions = {
+        name: "No Report Style"
+    };
+
+
   //Set the starting position to Toronto
   var latlng = new google.maps.LatLng(43.647566,-79.384847);
   var mapOptions = {
@@ -61,6 +79,10 @@ $(function(){
     mapTypeId: google.maps.MapTypeId.ROADMAP
   }
   map = new google.maps.Map(map_canvas[0], mapOptions);
+  //Applying the map style
+    var mapType = new google.maps.StyledMapType(MAP_STYLE, styleOptions);
+    map.mapTypes.set("No Report Style", mapType);
+    map.setMapTypeId("No Report Style");
 
 
   //Getting the enter key. How is this not default behaviour? blah.
