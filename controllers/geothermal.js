@@ -23,28 +23,28 @@ var geothermal = (function() {
 
 	// Returns the closest matching point based on the simple algorithm documented on wiki
 	geothermal.prototype.getRating = function(userLongitude, userLatitude, callback) {
-		console.log("geothermal: getRating");
+		console.log("geothermal: getRating", userLongitude, userLatitude);
 		geothermalReturnFun = callback;
-		this._parent.get(userLongitude, userLatitude, this.getRatingCallback)
+		this._databaseConn.query("SELECT (ABS(" + this._databaseConn.escape(userLongitude) + " - longitude) + ABS(" + this._databaseConn.escape(userLatitude) + " - latitude)) AS closeness, longitude, latitude, minDepth, unit FROM `geothermal` ORDER BY closeness ASC LIMIT 1", this.getRatingCallback)
 	}
 	/**
-	 * kWh/m2/day    Resource Potential
-	 * < 1 - 3         Low        
-	 * < 3 - 4         Moderate        
-	 * > 4 - 5         Good           
-	 * > 5 - 6         Very Good      
-	 * > 6             Excellent      
+	 * 
+	 * 
+	 * 
+	 * 
+	 * 
+	 * 
 	 **/
 	geothermal.prototype.getRatingCallback = function(data) {
-		console.log("geothermal: getRatingCallback ");
+		console.log("geothermal: getRatingCallback ", data);
 		if(!data[0]){ // Data not available
 			console.log("geothermal: getRatingCallback: input data is empty")
 			geothermalReturnFun(-1);
 		}else{
 			var minDepthRating;
-			if(data[0].unit < 6){
+			if(data[0].minDepth < 6){
 				minDepthRating = 3;
-			}else if(data[0].unit <= 10){
+			}else if(data[0].minDepth <= 10){
 				minDepthRating = 2;
 			}else{
 				minDepthRating = 1;

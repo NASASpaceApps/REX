@@ -26,7 +26,7 @@ var solar = (function() {
 
 	// Returns the closest matching point based on the simple algorithm documented on wiki
 	solar.prototype.getRating = function(userLongitude, userLatitude, callback) {
-		console.log("solar: getRating");
+		console.log("solar: getRating", userLongitude, userLatitude);
 		solarReturnFun = callback;
 		this._parent.get(userLongitude, userLatitude, this.getRatingCallback)
 	}
