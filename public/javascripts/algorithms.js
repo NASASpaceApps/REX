@@ -11,7 +11,7 @@ var maxError = 100000000;
 
 //Maximum number of iterations. Higher means more accuracy.
 //Initially done in matlab at 500 iterations, but we've kicked it up a notch.
-var maxIter = 50000;
+var maxIter = 5000;
 
 //The acceptable error rate
 var errorTolerance  = 0.1;
@@ -27,14 +27,14 @@ var thisError = 0;
 //Just generates some fake data to test with.
 function fakedata(){
 
-//10 years, 52 weeks per year
-var arr = Array(10);
-for(var x = 0;x<10;x++){
-	arr[x] = Array(52);
-	for(var y = 0;y<52;y++){
-		arr[x][y] = Math.random()*5;
-	}
-}	
+	//10 years, 52 weeks per year
+	var arr = Array(10);
+	for(var x = 0;x<10;x++){
+		arr[x] = Array(52);
+		for(var y = 0;y<52;y++){
+			arr[x][y] = Math.random()*5;
+		}
+	}	
 
 	 //Need to rotate the incoming data from week data in a year to yearly week data.
 	 var rotaded = rotateData(arr);
@@ -43,6 +43,51 @@ for(var x = 0;x<10;x++){
 	 console.log(result);
 }
 
+//This is where we organize and use all the data we have for solar at the coordinates entered
+function processData(data) {
+	//keeping track of where we are in in the data
+	var prevWeek = 1;
+	var w=0;
+	var y=0;
+	var organizedData = [];
+	for(var i = 0; i < data.length; i++){
+		if (prevWeek != data[i].week){
+			prevWeek=data[i].week;
+			w++;
+			y=0;
+		}
+		organizedData.push([]);
+		//Organizing the data by weeks
+		organizedData[w][y] = data[i].unit;
+		y++;
+	}
+	//Getting the average units per yer
+	var avgs=[0,0,0,0,0,0,0,0,0,0,0];
+	for (var m = 0; m < 51; m++){
+		for (var n = 0; n < organizedData[m].length; n++){
+			avgs[n]+=organizedData[m][n]
+		}
+	}
+	console.log(avgs);
+	//So now we predict for the future.. and get their yearly averages.
+	var futureData = PredictFuture(organizedData);
+	for(var j=0; j < 51; j++) {
+		for(var k =0; k < futureData[j].length-1; k++) {
+			avgs[k+8]+=futureData[j][k+1];
+		}
+	}
+	//Make them into averages
+	for(var p = 0;p<avgs.length;p++){
+		avgs[p] /= 52;
+	}
+
+	//shaboom
+	return(avgs);
+
+
+}
+
+//Only used when the data given isn't in the proper order for PredictFuture
 function rotateData(SolarData) {
 
 	//Quick and dirty rotation. Actually not a rotation. shhhh.
@@ -131,7 +176,6 @@ function PredictFuture(SunData){
 	// irradiance values (W/m^2).
 	// The function predicts the next three years and returns a matrix with 3
 	// columns and 52 rows.
-	
 	// how much data?
 	var numWeeks = SunData.length
 	var numYears = SunData[0].length;
