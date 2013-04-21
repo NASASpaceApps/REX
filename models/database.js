@@ -16,7 +16,7 @@ var database = (function() {
 	// Foo instances can access the private static
 	database.prototype.connect = function(){
 		var Sequelize = require("sequelize");
-		this._connection = new Sequelize('rex', 'root', 'root', {
+		this._connection = new Sequelize('rex', 'root', 'xampp', {
 			host: "localhost",
 			port: 3306
 		})

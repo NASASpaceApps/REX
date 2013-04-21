@@ -1,10 +1,11 @@
 var solarReturnFun;
+var solarDatabaseConn;
 
 var solar = (function() {
 	// constructor
 	function solar(){
 		var database = require("../models/database.js");
-		this._databaseConn = new database();
+		solarDatabaseConn = new database();
 		var energy = require("./energy.js");
 		this._parent = new energy("solar");
 	};
@@ -46,6 +47,21 @@ var solar = (function() {
 			solarReturnFun(2);
 		}else{
 			solarReturnFun(5);
+		}
+	};
+
+	solar.prototype.getPrediction = function(userLongitude, userLatitude, callback) {
+		console.log("solar: getPrediction ", userLongitude, userLatitude);
+		solarReturnFun = callback;
+		solarDatabaseConn.query("SELECT (ABS(" + solarDatabaseConn.escape(userLongitude) + " - longitude) + ABS(" + solarDatabaseConn.escape(userLatitude) + " - latitude)) AS closeness, longitude, latitude FROM `solar_prediction` ORDER BY closeness ASC LIMIT 1", this.getPredictionCallback)
+	};
+	solar.prototype.getPredictionCallback = function(data) {
+		console.log("solar: getPredictionCallback ", data);
+		if(!data[0]){
+			console.log("solar: getPredictionCallback: input data is empty")
+			solarReturnFun(-1);
+		}else{
+			solarDatabaseConn.query("SELECT year, week, unit FROM `solar_prediction` WHERE longitude=\""+data[0].longitude+"\" and latitude=\""+data[0].latitude+"\" ORDER BY year ASC, week ASC", solarReturnFun)
 		}
 	};
 	
