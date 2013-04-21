@@ -13,7 +13,7 @@ var solarObject = new solar();
 var geo = require("../controllers/geothermal.js");
 var geoObject = new geo();
 exports.index = function(req, res){
-  res.render('index', { title: 'Somethingrather' });
+  res.render('index', { title: 'REX-Renewable Energy Explorer' });
 };
 exports.ajax = function(req, res){ 
 	res.render('ajax', {});
