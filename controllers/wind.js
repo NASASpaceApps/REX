@@ -1,4 +1,4 @@
-var returnFun;
+var windReturnFun;
 
 var wind = (function() {
 	// constructor
@@ -24,35 +24,27 @@ var wind = (function() {
 	// Returns the closest matching point based on the simple algorithm documented on wiki
 	wind.prototype.getRating = function(userLongitude, userLatitude, callback) {
 		console.log("wind: getRating");
-		returnFun = callback;
+		windReturnFun = callback;
 		this._parent.get(userLongitude, userLatitude, this.getRatingCallback)
 	}
 	/**
-	 * Wind Power Class	 | Wind Power Density (W/m2) | Resource Potential   
+	 * Wind Power Class  | Wind Power Density (W/m2) | Resource Potential   
 	 * -----------------|---------------------------|-----------------------
-	 *       1          |           0 - 200         |         Poor          
-	 *       2          |         200 - 300         |       Marginal        
-	 *       2          |         300 - 400         |         Fair          
-	 *       3          |         400 - 500         |         Good            
-	 *       3          |         500 - 600         |       Excellent           
-	 *       4          |         600 - 800         |      Outstanding          
-	 *       5          |           > 800           |        Superb               
-	 **/
+	 *       1          |           0 - 200         |     Not Available          
+	 *       2          |         200 - 300         |       Possible        
+	 *       2          |           > 300           |    Highly Probable          
+	 **/  
 	wind.prototype.getRatingCallback = function(data) {
 		console.log("wind: getRatingCallback ");
 		if(!data[0]){ // Data not available
 			console.log("wind: getRatingCallback: input data is empty")
-			returnFun(-1);
-		}else if(data[0].unit < 200){ // Poor
-			returnFun(1);
-		}else if(data[0].unit < 400){ // Marginal, Fair
-			returnFun(2);
-		}else if(data[0].unit < 600){ // Good, Excellent
-			returnFun(3);
-		}else if(data[0].unit < 800){ // Outstanding
-			returnFun(4);
-		}else{ // Superb
-			returnFun(5);
+			windReturnFun(-1);
+		}else if(data[0].unit < 200){
+			windReturnFun(1);
+		}else if(data[0].unit < 300){
+			windReturnFun(2);
+		}else{
+			windReturnFun(3);
 		}
 	};
 	

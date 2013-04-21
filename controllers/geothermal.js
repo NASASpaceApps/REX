@@ -1,4 +1,4 @@
-var returnFun;
+var geothermalReturnFun;
 
 var geothermal = (function() {
 	// constructor
@@ -24,7 +24,7 @@ var geothermal = (function() {
 	// Returns the closest matching point based on the simple algorithm documented on wiki
 	geothermal.prototype.getRating = function(userLongitude, userLatitude, callback) {
 		console.log("geothermal: getRating");
-		returnFun = callback;
+		geothermalReturnFun = callback;
 		this._parent.get(userLongitude, userLatitude, this.getRatingCallback)
 	}
 	/**
@@ -39,17 +39,29 @@ var geothermal = (function() {
 		console.log("geothermal: getRatingCallback ");
 		if(!data[0]){ // Data not available
 			console.log("geothermal: getRatingCallback: input data is empty")
-			returnFun(-1);
-		}else if(data[0].unit < 2000){ // Low
-			returnFun(1);
-		}else if(data[0].unit < 4000){ // Moderate
-			returnFun(2);
-		}else if(data[0].unit < 5000){ // Good
-			returnFun(3);
-		}else if(data[0].unit < 6000){ // Very Good
-			returnFun(4);
-		}else{ // Excellent
-			returnFun(5);
+			geothermalReturnFun(-1);
+		}else{
+			var minDepthRating;
+			if(data[0].unit < 6){
+				minDepthRating = 3;
+			}else if(data[0].unit <= 10){
+				minDepthRating = 2;
+			}else{
+				minDepthRating = 1;
+			}
+			var gradientRating;
+			if(data[0].unit < 20){
+				gradientRating = 1;
+			}else if(data[0].unit < 50){
+				gradientRating = 2;
+			}else{
+				gradientRating = 3;
+			}
+			if(minDepthRating < gradientRating){
+				geothermalReturnFun(minDepthRating);
+			}else{
+				geothermalReturnFun(gradientRating);
+			}
 		}
 	};
 	

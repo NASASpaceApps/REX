@@ -1,4 +1,4 @@
-var returnFun;
+var solarReturnFun;
 
 var solar = (function() {
 	// constructor
@@ -24,32 +24,26 @@ var solar = (function() {
 	// Returns the closest matching point based on the simple algorithm documented on wiki
 	solar.prototype.getRating = function(userLongitude, userLatitude, callback) {
 		console.log("solar: getRating");
-		returnFun = callback;
+		solarReturnFun = callback;
 		this._parent.get(userLongitude, userLatitude, this.getRatingCallback)
 	}
 	/**
 	 * kWh/m2/day    Resource Potential
-	 * < 1 - 3         Low        
-	 * < 3 - 4         Moderate        
-	 * > 4 - 5         Good           
-	 * > 5 - 6         Very Good      
-	 * > 6             Excellent      
+	 * < 1 - 2         Not Available            
+	 * > 3 - 4         Possible             
+	 * > 5             Highly Probable      
 	 **/
 	solar.prototype.getRatingCallback = function(data) {
 		console.log("solar: getRatingCallback ");
 		if(!data[0]){ // Data not available
 			console.log("solar: getRatingCallback: input data is empty")
-			returnFun(-1);
-		}else if(data[0].unit < 2000){ // Low
-			returnFun(1);
-		}else if(data[0].unit < 4000){ // Moderate
-			returnFun(2);
-		}else if(data[0].unit < 5000){ // Good
-			returnFun(3);
-		}else if(data[0].unit < 6000){ // Very Good
-			returnFun(4);
-		}else{ // Excellent
-			returnFun(5);
+			solarReturnFun(-1);
+		}else if(data[0].unit < 2000){
+			solarReturnFun(1);
+		}else if(data[0].unit < 4000){
+			solarReturnFun(2);
+		}else{
+			solarReturnFun(5);
 		}
 	};
 	
