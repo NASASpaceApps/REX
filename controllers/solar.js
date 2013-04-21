@@ -16,6 +16,8 @@ var solar = (function() {
 		this._parent.getEverything(callback)
 	};
 
+	
+
 	// Returns whole database content
 	solar.prototype.get = function(userLongitude, userLatitude, callback) {
 		console.log("solar: get");
