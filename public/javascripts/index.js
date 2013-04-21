@@ -1,13 +1,17 @@
 $(document).ready(function() {
+	//Clicking the get started button
 	$(".get_started_button").bind("click", function(e) {
+		//Stopping the default mouse behaviour
 		e.preventDefault();
-		console.log(coordinates)
+
 		var ratings = {};
 
+		//Don't allow a transition if the coordinates aren't set (user hasn't hit enter)
 		if (!coordinates[0] && !coordinates[1]) {
 			return
 		}
 
+		//Sending the coordinates to the server
 		$.ajax({
 			type: 'post',
 			url: '/sendCoordinates',
@@ -15,6 +19,8 @@ $(document).ready(function() {
 			success: function(data) {
 				console.log(data);
 				console.log('sent');
+
+				//Receiving all kinds of information
 				ratings.windRating = data.windRating;
 				ratings.solarRating = data.solarRating;
 				ratings.geoRating = data.geoRating;
@@ -22,17 +28,21 @@ $(document).ready(function() {
 				ratings.solarInfo = data.solarInfo;
 				ratings.geoInfo = data.geoInfo;
 
+				//Just in case google maps didn't pick up a location name fast enough.
 				if (typeof locationName == 'undefined'){
 					locationName='Previous Page';
 				}
 
+				//Now  the slide-in of the columns and slide-out of the landing.
 				$.ajax({
 					type: 'get',
 					url: '/overview',
 					success: function(data) {
+						//Get rid of the old stuff
 						$(".title").addClass("animate_left");
 						$(".map_bar").addClass("animate_left");
 
+						//Make the bg transparent
 						$("body").prepend("<a class='location_home' href='#'><div class='location_name'>"+locationName+"</div></a>")
 						$(".landingMain").append(data);
 						$(".background_image").css("opacity", "0");
