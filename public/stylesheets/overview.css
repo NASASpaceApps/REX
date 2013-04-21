@@ -23,7 +23,7 @@
 	height:3em;
 	line-height: 3em;
 	left:-3.5em;
-	top: 8em;
+	bottom: 7.2em;
 	white-space: nowrap;
 	-webkit-transform: rotate(-90deg);
 	transform-origin: 100% 0;
@@ -273,6 +273,7 @@
 	bottom: 6%;
 	display: none;
 	padding: 0 0 0 1%;
+	color: #EDEEEE;
 }
 #red{
 	height:1em;
@@ -301,7 +302,7 @@
 .legend_text {
 	display:inline-block;
 	text-align: center;
-	color: black;
+	color: #5D5D5D;
 }
 #enviro_facts{
 	width:37.5%;

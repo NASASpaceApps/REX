@@ -2,6 +2,13 @@ google.load('visualization', '1.0', {'packages':['corechart']})
 $(document).ready(function() {
 	$("#location").focus();
 	//Clicking the get started button
+	$("#about").bind("click", function(e) {
+		e.preventDefault();
+		if ($(".about_picture").css("display") == "none")
+			$(".about_picture").css("display", "inline-block");
+		else
+			$(".about_picture").css("display", "none");
+	})
 	$(".get_started_button").bind("click", function(e) {
 		//Stopping the default mouse behaviour
 		e.preventDefault();
@@ -19,6 +26,7 @@ $(document).ready(function() {
 		}
 
 		//Sending the coordinates to the server
+	
 		$.ajax({
 			type: 'post',
 			url: '/sendCoordinates',
@@ -54,54 +62,74 @@ $(document).ready(function() {
 						$(".landingMain").append(data);
 						$(".background_image").css("opacity", "0");
 
+
+						//Now animate the stuff from the right inwards
 						setTimeout(function() {
 							$(".location_home").addClass("location_home_animate");
 							$('.overview_columns').addClass("animate_left_no3d");
+							//initializing some rankings
 							var highest = 0;
 							var best = ""
 							var count = 1;
+							var highcount = 0;
+
+							//Now we fill in all of these rankings (the circles) and determine whos best
 							$("#wind_column").find(".rating_circle").each(function() {
-								if(highest < count) {
-									highest = count;
-									best = "WIND POWER"
-								}
+								
 								if (count <= ratings.windRating) {
 									$(this).css("background-color", "#9FCE62");
-									console.log("ffff")
+									highcount += 1;
 								} 
+								if(highest < highcount) {
+									highest = highcount;
+									best = "WIND POWER"
+								}
 								count += 1;
 							})
+
+							//Solar info
 							count = 1;
+							highcount = 0;
 							$("#solar_column").find(".rating_circle").each(function() {
-								if(highest < count) {
-									highest = count;
-									best = "SOLAR POWER"
-								}
+								
 								if (count <= ratings.solarRating) {
 									$(this).css("background-color", "#9FCE62");
-									console.log("ffff")
+									highcount += 1;
+								}
+								if(highest < highcount) {
+									highest = highcount;
+									best = "SOLAR POWER"
 								}
 								count += 1;
 							})
+
+							//Geo info
 							count = 1;
+							highcount = 0;
 							$("#geo_column").find(".rating_circle").each(function() {
-								if(highest < count) {
-									highest = count;
-									best = "GEOTHERMAL"
-								}
+								
 								if (count <= ratings.geoRating) {
 									$(this).css("background-color", "#9FCE62");
-									console.log("ffff")
+									highcount += 1;
+								}
+								if(highest < highcount) {
+									highest = highcount;
+									best = "GEOTHERMAL"
 								}
 								count += 1;
 							})
+							//Yay! Show who is the bestest.
 							$(".winner_large").html(best)
 						}, 100);
 
+						//Returning to landing page
+
+						//Just reverse what we did to show this stuff. animate out and in.
 						$(".location_home").bind("click", function(e) {
 							e.preventDefault();
+							$("#location").focus();
+							$("#location").val("");
 							$(".background_image").css("opacity", "1");
-							console.log("cliiiiicked")
 							$(".location_home").remove();
 							$(".overview_columns").removeClass("animate_left_no3d");
 							$(".title").removeClass("animate_left")
@@ -111,11 +139,14 @@ $(document).ready(function() {
 							}, 1000)
 						})
 
+						//Clicking on an information column.
 						$(".column").click(function(e) {
 							if (!($(e.target).hasClass("column"))) {
 								$(e.target).parent().trigger("click");
 								return
 							}
+
+
 							if ($(e.target).hasClass("disabled"))
 								return
 							//$(e.target).addClass("disabled");
@@ -131,7 +162,7 @@ $(document).ready(function() {
 							}
 							console.log(resource)
 
-
+							//Sliding the summary block n.
 							var id = e.target.id;
 							console.log(id)
 							var left = $("#" + id).position().left;
@@ -139,19 +170,23 @@ $(document).ready(function() {
 							$("#" + id).clone().appendTo(".overview_columns").css({"position": "absolute", "top": top + "px", "left": left + "px",
 								"-webkit-transition": "all 1s ease"}).addClass("slide_column")
 						
-
+							//Disable the functionality of the other columns
 							$(".column").each(function() {
 								if (!($(this).hasClass("slide_column")))
 									$(this).addClass("disabled");
 							})
 
+							//Clicking the back button during the summary
 							$(".slide_column").click(function(e2) {
 								if (!($(e2.target).hasClass("column"))) {
 									$(e2.target).parent().trigger("click");
 									return
 								}
+
+								//Remove the summary container
 								$(e2.target).css("left", "-150%");
 								$(".summaryContainer").css("left", "150%");
+
 								$(".column").each(function() {
 									$(this).removeClass("disabled");
 								})
@@ -163,12 +198,15 @@ $(document).ready(function() {
 								
 							})
 
+							//This is getting the data we pull in for the summary
 							setTimeout(function() {
 								$.ajax({
 									type: "get",
 									url: "/summary",
 									success: function(data) {
 										$(".overview_columns").append(data);
+
+										//Done loading!
 										$(".loading_spinner").remove();
 										setTimeout(function() {
 											//$(".slide_column").css({"left": "12.5%", "margin-left": "3%", "margin-right": "3%"});
@@ -180,16 +218,12 @@ $(document).ready(function() {
 											$(".slide_column").find(".next_container").find("img").css("-webkit-transform", "rotateY(180deg)");
 											$(".slide_column").find(".next_container").html("BACK" + $(".slide_column").find(".next_container").html().slice(4));
 											//$("#predict_button").find("img").click(function() {
-											
-											//})
-							       
 											console.log(resource)
 											if (resource == "wind") {
 												$("#kwhTitle").html((ratings.windInfo[0].unit / 1000).toFixed(2) + " kwh/m&#178;");
 												//$("#fun_fact").html("Between 2008 and 2012, wind power has provided 36.5% of all new generating capacity in the United States.")
 												$("#enviro_text").html("<div class='powFactor'> 0 </div> <br> CO2 emissions")
 												$("#money_text").html("<div class='powFactor'>30% </div> <br> Tax Rebate in Nevada <br> ")
-
 												//$(".prof_links").html("<a href='http://www.advancedgreenbuilders.com'>Advanced Green Builders</a> <br> <br><a href='http://www.awstruepower.com/'>AWS True Power</a>")
 											} else if (resource == "solar") {
 												$("#kwhTitle").html(ratings.solarInfo[0].unit + " kwh");
@@ -204,8 +238,10 @@ $(document).ready(function() {
 												$("#money_text").html("<div class='powFactor'>$1.00</div>  <br> To Heat or Cool a 2000sq ft home for a day")
 
 												//$(".prof_links").html("<a href='http://www.silverstaterenewables.com/'>Silver State Renewables, Inc</a> <br> <br><a href='http://www.quantumgeothermal.com/'>Quantum Geothermal</a>")
-												$("#kwhTitle").html(ratings.geoInfo[0].unit + " &#186;C/m");
+												$("#kwhTitle").html(ratings.geoInfo[0].unit + " &deg;C/m");
 											}
+
+											//Close the map. Make it fancy. Slide.
 											function closemap() {
 												$(".prof_map").html("");
 												$("#close_map").css("display", "none");
@@ -262,7 +298,7 @@ $(document).ready(function() {
 											})
 										}, 1000)
 									}
-								});
+								}); //timeout
 							}, 1000);
 
 							})
@@ -271,15 +307,6 @@ $(document).ready(function() {
 			}
 		});
 	});
-
-	//var items = (0,9)
-	//items[0][0] = 1;
-	//items[1][2] =2;
-
-	//console.log(items[0][0]);
-
-
-
 
 
 });

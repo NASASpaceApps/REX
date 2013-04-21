@@ -26,7 +26,7 @@ var solar = (function() {
 
 	// Returns the closest matching point based on the simple algorithm documented on wiki
 	solar.prototype.getRating = function(userLongitude, userLatitude, callback) {
-		console.log("solar: getRating");
+		console.log("solar: getRating", userLongitude, userLatitude);
 		solarReturnFun = callback;
 		this._parent.get(userLongitude, userLatitude, this.getRatingCallback)
 	}
@@ -41,27 +41,34 @@ var solar = (function() {
 		if(!data[0]){ // Data not available
 			console.log("solar: getRatingCallback: input data is empty")
 			solarReturnFun(-1);
-		}else if(data[0].unit < 4000){
+		}else if(data[0].unit < 4500){
 			solarReturnFun(1);
-		}else if(data[0].unit < 5000){
+		}else if(data[0].unit < 5500){
 			solarReturnFun(2);
 		}else{
 			solarReturnFun(5);
 		}
 	};
 
+
+	//Get the prediction data.
 	solar.prototype.getPrediction = function(userLongitude, userLatitude, callback) {
 		console.log("solar: getPrediction ", userLongitude, userLatitude);
 		solarReturnFun = callback;
-		solarDatabaseConn.query("SELECT (ABS(" + solarDatabaseConn.escape(userLongitude) + " - longitude) + ABS(" + solarDatabaseConn.escape(userLatitude) + " - latitude)) AS closeness, longitude, latitude FROM `solar_prediction` ORDER BY closeness ASC LIMIT 1", this.getPredictionCallback)
+		//Getting the closest dataset to what you've entered.
+		solarDatabaseConn.query("SELECT (ABS(" + solarDatabaseConn.escape(userLongitude) + " - solar_prediction_coordinates.longitude) + ABS(" + solarDatabaseConn.escape(userLatitude) + " - solar_prediction_coordinates.latitude)) AS closeness, solar_prediction_coordinates.longitude, solar_prediction_coordinates.latitude FROM `solar_prediction_coordinates` ORDER BY closeness ASC LIMIT 1", this.getPredictionCallback)
 	};
+
+	//Get some solar data (the long version)
 	solar.prototype.getPredictionCallback = function(data) {
 		console.log("solar: getPredictionCallback ", data);
 		if(!data[0]){
-			console.log("solar: getPredictionCallback: input data is empty")
+			//Found nothing in the database!
+			console.log("solar: getPredictionCallback: input data is empty");
 			solarReturnFun(-1);
 		}else{
-			solarDatabaseConn.query("SELECT week, year, unit FROM `solar_prediction` WHERE longitude=\""+data[0].longitude+"\" and latitude=\""+data[0].latitude+"\" ORDER BY week ASC, year ASC", solarReturnFun)
+			//Get the data for every week over the past 8 years.
+			solarDatabaseConn.query("SELECT solar_prediction_data.week, solar_prediction_data.year, solar_prediction_data.unit FROM `solar_prediction_data` JOIN `solar_prediction_coordinates` ON solar_prediction_coordinates.id = solar_prediction_data.coordinates WHERE solar_prediction_coordinates.longitude=\""+data[0].longitude+"\" and solar_prediction_coordinates.latitude=\""+data[0].latitude+"\" ORDER BY solar_prediction_data.week ASC, solar_prediction_data.year ASC", solarReturnFun)
 		}
 	};
 	

@@ -5,7 +5,7 @@ body {
   height:100%;
   margin: 0;
   overflow: hidden;
-  background-color": "#EEEEEE";
+  background-color: #EEEEEE;
 }
 a {
   color: #00b7ff;
@@ -103,6 +103,15 @@ body {
 }
 #top_links a:hover {
   color: #9FCE62;
+}
+
+.about_picture {
+  display:none;
+  position: absolute;
+  right: 15%;
+  top: 12%;
+  width:70%;
+  z-index: 100;
 }
 
 .landingMain {
