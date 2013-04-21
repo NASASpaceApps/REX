@@ -9,16 +9,16 @@ div(class="summaryContainer")
 			div(class="predict_text")
 				|A rough estimate of the energy potential available in your location.
 		div(class="summaryColumn")
-		div(class="summarySubHead")
-			div(class="predict_container", id="predict_button", name="boxTwoSubtext")
-				img(src="images/forward.png")
-			div(class="predict_text")
-				|Plan ahead. Look at your results for the next 3 years.
-		div(class="summaryColumn")
-		div(class="summaryBigSubHead")
+		div(id="money_facts", class="summarySubHead")
 			div(class="facts_title")
-				|Did you know?
-			div(id="fun_fact", class="predict_text")
+				|Cost Benefits
+			div(id="money_text", class="predict_text")
+
+		div(class="summaryColumn")
+		div(id="enviro_facts", class="summaryBigSubHead")
+			div(class="facts_title")
+				|Environment Benefits
+			div(id="enviro_text", class="predict_text")
 	div(class="summaryRow")
 	div(class="summaryBottom")
 		div(class="summary_info_box")
@@ -35,5 +35,18 @@ div(class="summaryContainer")
 	div(class="prof_map")
 	a(id="close_map", href="#")
 		|Close
+	div(id="map_legend")
+		div(id="yellow")
+		div(class='legend_text')
+			|Contractor/Installer
+		br
+		div(id="red")
+		div(class='legend_text')
+			|Manufacturer/Supplier
+		br
+		div(id="blue")
+		div(class='legend_text')
+			|Other (Non-financial)
+
 
 		
