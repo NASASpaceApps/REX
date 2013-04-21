@@ -47,11 +47,11 @@ $(document).ready(function() {
 
 						//Make the bg transparent
 						$("body").prepend("<a class='location_home' href='#'><div class='location_name'>"+locationName+"</div><img src='images/location white.png'></a>")
-						$(".location_home").addClass("location_home_animate");
 						$(".landingMain").append(data);
 						$(".background_image").css("opacity", "0");
 
 						setTimeout(function() {
+							$(".location_home").addClass("location_home_animate");
 							$('.overview_columns').addClass("animate_left_no3d");
 							var highest = 0;
 							var best = ""
@@ -144,11 +144,17 @@ $(document).ready(function() {
 									$(e2.target).parent().trigger("click");
 									return
 								}
-								$(e2.target).remove();
-								$(".summaryContainer").remove();
+								$(e2.target).css("left", "-150%");
+								$(".summaryContainer").css("left", "150%");
 								$(".column").each(function() {
 									$(this).removeClass("disabled");
 								})
+								setTimeout(function() {
+									$(e2.target).remove();
+									$(".summaryContainer").remove();
+								
+								}, 1000)
+								
 							})
 
 							setTimeout(function() {
