@@ -87,8 +87,8 @@ a {
 }
 
 .landingMain {
-  width: 70%;
-  margin: 0 0 0 15%;
+  width: 1100px;
+  margin: 0 auto;
   height: 500px;
   display: block;
   position: relative;
@@ -130,11 +130,12 @@ a {
   margin: 0;
 }
 .map_search img {
-  width:50px;
-  height:40px;
+  width:35px;
+  height:25px;
   position:absolute;
   z-index: 10;
-  left: -10px;
+  left: 0px;
+  top: 7px;
 }
 .get_started_button {
   width:20%;
@@ -212,13 +213,17 @@ a {
   -webkit-transform: translate3d(200%, 0, 0);
 }
 .disabled {
-  opacity: 0.7;
+  opacity: 0;
 }
 
 .summaryContainer {
-  width:86%;
+  width:70%;
   height:100%;
   background-color: #434343;
+  position: absolute;
+  top:0;
+  -webkit-transition: all 1s ease;
+  left: 150%;
 }
 
 .summaryHead {
@@ -241,28 +246,29 @@ a {
   width:51%;
   background-color: #5F5F61;
   display: inline-block;
-
+  position: relative;
 }
 
 .summaryHeadBigText {
-  width: 100%;
-  color: #fff;
+  width: 90%;
+  color: #9Fce62;
   position: absolute;
   font-family: gothic-med;
   font-size: 18pt;
-  top:6%;
-  text-align: center;
+  top:10%;
+  padding: 0 0 0 10%;
+  text-align: left;
 }
 
 .summarySubText {
-  width: 90%;
+  width: 85%;
   color: #fff;
-  padding: 0 5% 0 5%;
+  padding: 0 5% 0 10%;
   position: absolute;
   font-family: gothic-med;
   font-size: 11pt;
   top:35%;
-  text-align: center;
+  text-align: left;
 }
 
 .summaryAdditionalResources {
@@ -270,8 +276,8 @@ a {
   position: absolute;
   font-family: gothic-med;
   font-size: 16pt;
-  left: 68%;
-  bottom:10%;
+  right: 7%;
+  bottom:25%;
 }
 
 #back img {

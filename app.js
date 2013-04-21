@@ -39,7 +39,9 @@ app.get('/', routes.index);
 app.get('/users', user.list);
 app.get('/ajax', routes.ajax);
 app.get('/overview', routes.overview);
+app.get('/summary', routes.summary);
 app.post('/sendCoordinates', routes.sendCoordinates)
+
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log("Express server listening on port " + app.get('port'));

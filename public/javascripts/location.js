@@ -11,6 +11,7 @@ function codeAddress(address, map_canvas) {
           position: results[0].geometry.location
       });
 
+
       coordinates[1] = results[0].geometry.location.jb;
       coordinates[0] = results[0].geometry.location.kb;
       locationName=results[0].formatted_address;
@@ -28,7 +29,7 @@ function codeAddress(address, map_canvas) {
 
 $(function(){
 
-  fakedata();
+  //fakedata();
 
   map_canvas = $(".map_canvas");
   geocoder = new google.maps.Geocoder();

@@ -35,7 +35,7 @@ var wind = (function() {
 	 *       2          |           > 300           |    Highly Probable          
 	 **/  
 	wind.prototype.getRatingCallback = function(data) {
-		console.log("wind: getRatingCallback ");
+		console.log("wind: getRatingCallback ", data);
 		if(!data[0]){ // Data not available
 			console.log("wind: getRatingCallback: input data is empty")
 			windReturnFun(-1);
