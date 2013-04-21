@@ -41,9 +41,9 @@ var solar = (function() {
 		if(!data[0]){ // Data not available
 			console.log("solar: getRatingCallback: input data is empty")
 			solarReturnFun(-1);
-		}else if(data[0].unit < 2000){
-			solarReturnFun(1);
 		}else if(data[0].unit < 4000){
+			solarReturnFun(1);
+		}else if(data[0].unit < 5000){
 			solarReturnFun(2);
 		}else{
 			solarReturnFun(5);
