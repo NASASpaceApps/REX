@@ -1,4 +1,4 @@
-var returnFun;
+var windReturnFun;
 
 var wind = (function() {
 	// constructor
@@ -24,7 +24,7 @@ var wind = (function() {
 	// Returns the closest matching point based on the simple algorithm documented on wiki
 	wind.prototype.getRating = function(userLongitude, userLatitude, callback) {
 		console.log("wind: getRating");
-		returnFun = callback;
+		windReturnFun = callback;
 		this._parent.get(userLongitude, userLatitude, this.getRatingCallback)
 	}
 	/**
@@ -42,17 +42,17 @@ var wind = (function() {
 		console.log("wind: getRatingCallback ");
 		if(!data[0]){ // Data not available
 			console.log("wind: getRatingCallback: input data is empty")
-			returnFun(-1);
+			windReturnFun(-1);
 		}else if(data[0].unit < 200){ // Poor
-			returnFun(1);
+			windReturnFun(1);
 		}else if(data[0].unit < 400){ // Marginal, Fair
-			returnFun(2);
+			windReturnFun(2);
 		}else if(data[0].unit < 600){ // Good, Excellent
-			returnFun(3);
+			windReturnFun(3);
 		}else if(data[0].unit < 800){ // Outstanding
-			returnFun(4);
+			windReturnFun(4);
 		}else{ // Superb
-			returnFun(5);
+			windReturnFun(5);
 		}
 	};
 	
