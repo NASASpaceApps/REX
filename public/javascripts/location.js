@@ -1,6 +1,7 @@
 var geocoder, results_found = false;
-
 var coordinates= [0,0];
+var locationName;
+
 function codeAddress(address, map_canvas) {
   geocoder.geocode( { 'address': address}, function(results, status) {
     if (status == google.maps.GeocoderStatus.OK) {
@@ -13,7 +14,8 @@ function codeAddress(address, map_canvas) {
 
       coordinates[1] = results[0].geometry.location.jb;
       coordinates[0] = results[0].geometry.location.kb;
-
+      locationName=results[0].formatted_address;
+      console.log(results[0].formatted_address);
       console.log(coordinates);
 
       $("#long").val(results[0].geometry.location.Za);

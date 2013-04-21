@@ -250,24 +250,25 @@ a {
 }
 
 .summaryHeadBigText {
-  width: 100%;
-  color: #fff;
+  width: 90%;
+  color: #9Fce62;
   position: absolute;
   font-family: gothic-med;
   font-size: 18pt;
   top:6%;
-  text-align: center;
+  padding: 0 0 0 10%;
+  text-align: left;
 }
 
 .summarySubText {
-  width: 90%;
+  width: 85%;
   color: #fff;
-  padding: 0 5% 0 5%;
+  padding: 0 5% 0 10%;
   position: absolute;
   font-family: gothic-med;
   font-size: 11pt;
   top:35%;
-  text-align: center;
+  text-align: left;
 }
 
 .summaryAdditionalResources {
@@ -276,15 +277,15 @@ a {
   font-family: gothic-med;
   font-size: 16pt;
   left: 68%;
-  bottom:15%;
+  bottom:10%;
 }
 
 #back img {
   position: absolute;
-  bottom: 20%;
-  height: 34px;
+  bottom: 5%;
+  height: 24px;
   width: 24px;
-  left: 75%;
+  left:  82%;
   -webkit-transition: all 0.7s ease;
 }
 .summaryColumn {

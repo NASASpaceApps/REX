@@ -2,18 +2,20 @@
 	position: absolute;
 	left:0;
 	top: 20%;
-	height: 30%;
+	height: 25%;
 	width: 2%;
 	background-color: #434343;
 }
+
 .location_home .location_name {
 	font-size: 100%;
 	color: white;
+	position: absolute;
+	text-align: center;
 	text-decoration: none;
-	height: 20%;
 	font-family: gothic-med;
-	margin: 170% 0 0 -160%;
-	width:500%;
+	margin: 340% 0 0 -300%;
+	width:700%;
 	-webkit-transform: rotate(-90deg);
 }
 .location_home img {
@@ -25,6 +27,7 @@
 	height:100%;
 	margin: 5% 0 0 0;
 	position: absolute;
+	bottom: 5px;
 	top: 0;
 	left: 200%;
 	-webkit-transition: all 1s ease;
@@ -103,5 +106,16 @@
 	left: 50%;
 	padding: 10px 0 0 0;
 	vertical-align: top;
+	font-family: gothic-med;
+}
+#predit_button {
+
+}
+.background_info {
+	display: inline-block;
+	position:absolute;
+	width:90%;
+	padding: 0 5%;
+	margin-top: 5%;
 	font-family: gothic-med;
 }
