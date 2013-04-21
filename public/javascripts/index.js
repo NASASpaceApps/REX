@@ -165,6 +165,9 @@ $(document).ready(function() {
 													data: {data: coordinates},
 													success: function(data) {
 
+														var yearlyAverages = processData(data);
+														console.log(yearlyAverages);
+
 													}
 												})
 											})

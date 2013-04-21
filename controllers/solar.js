@@ -61,7 +61,7 @@ var solar = (function() {
 			console.log("solar: getPredictionCallback: input data is empty")
 			solarReturnFun(-1);
 		}else{
-			solarDatabaseConn.query("SELECT year, week, unit FROM `solar_prediction` WHERE longitude=\""+data[0].longitude+"\" and latitude=\""+data[0].latitude+"\" ORDER BY year ASC, week ASC", solarReturnFun)
+			solarDatabaseConn.query("SELECT week, year, unit FROM `solar_prediction` WHERE longitude=\""+data[0].longitude+"\" and latitude=\""+data[0].latitude+"\" ORDER BY week ASC, year ASC", solarReturnFun)
 		}
 	};
 	
