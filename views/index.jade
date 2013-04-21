@@ -10,14 +10,16 @@ block content
 	script(src="../javascripts/index.js")
 	div(class="landingMain")
 		div(class="title")
-			|Meet Rex
+			|Meet REX
 			br
 			|Your personal renewable energy explorer for all your energy needs
+		//The map search bar thing is here
 		div(class="map_bar")
 			div(class="map_canvas")
 			div(class="map_search")
 				div(class="map_search_inner")
 					img(src="images/location.png")
+					//apparently inputs have breaks infront of them always. annoying.
 					div(class="anti_break")
 						input(type="text", class="inputLocation", id="location", placeholder="Where are you from?")
 					a(class="get_started_button", href="#")
