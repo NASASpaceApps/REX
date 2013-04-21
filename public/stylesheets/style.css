@@ -21,6 +21,11 @@ a {
   src: url('GothamRnd-Medium.otf');
 }
 
+@font-face {
+  font-family: gothic-light;
+  src: url('GothamRnd-Light.otf');
+}
+
 ::-webkit-input-placeholder { /* WebKit browsers */
     color:    #000;
     font-family: gothic-med;
@@ -41,7 +46,7 @@ a {
 
 }
 body {
-  font-family: gothic-med;
+  font-family: gothic-light;
 }
 .background_image {
   position:absolute;
