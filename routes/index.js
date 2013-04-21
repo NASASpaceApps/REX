@@ -23,12 +23,16 @@ exports.overview = function (req, res) {
 }
 exports.sendCoordinates = function (req, res){
 	console.log(req.body);
+	//Setting default ratings
 	var windRating = 1;
 	var solarRating = 1;
 	var geoRating = 1;
+	//The information tied to the technology.
 	var geoInfo;
 	var windInfo;
 	var solarInfo;
+
+	//The callback waterfall. 
 	windObject.getRating(req.body.data[0], req.body.data[1], function(a) {
 		console.log(a);
 		windRating = a;
@@ -61,5 +65,9 @@ exports.summary = function(req, res) {
 exports.predict = function(req, res) {
 	var coordinates = [req.body.data[0], req.body.data[1]];
 	console.log(coordinates)
-	res.send(coordinates)
+	solarObject.getPrediction(coordinates[0], coordinates[1], function(a) {
+
+			res.send(a)
+
+	});
 }
