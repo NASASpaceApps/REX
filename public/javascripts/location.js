@@ -5,13 +5,19 @@ var locationName;
 function codeAddress(address, map_canvas) {
   geocoder.geocode( { 'address': address}, function(results, status) {
     if (status == google.maps.GeocoderStatus.OK) {
-      map.setCenter(results[0].geometry.location);
+
+      var latitlong = results[0].geometry.location;
+      latitlong.jb = latitlong.jb -0.005;
+
+      map.setCenter(latitlong);
+
+      latitlong.jb = latitlong.jb +0.005;
+      latitlong.kb = latitlong.kb -0.015;
+
       var marker = new google.maps.Marker({
           map: map,
-          position: results[0].geometry.location
+          position: latitlong
       });
-
-
       coordinates[1] = results[0].geometry.location.jb;
       coordinates[0] = results[0].geometry.location.kb;
       locationName=results[0].formatted_address;
