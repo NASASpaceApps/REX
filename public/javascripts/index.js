@@ -75,7 +75,14 @@ $(document).ready(function() {
 		});
 	});
 
-	console.log("test");
+	var items = (0,9)
+	items[0][0] = 1;
+	items[1][2] =2;
+
+	console.log(items[0][0]);
+
+
+
 
 
 });
