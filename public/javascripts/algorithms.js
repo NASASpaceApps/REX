@@ -1,3 +1,17 @@
+	var maxError = 100000000;
+	var maxIter = 5000;
+	var errorTolerance  = 0.1;
+	var A=[0,0];
+	var bestA=[0];
+	var thisError = 0;
+
+console.log("fsfs")
+function fakedata(){
+	 var fake=[1,2,3,4,5,6,7,6,5,4,3,2,1];
+	 var result = estimateFuncParam(fake);
+	 console.log(result);
+}
+
 function estimateFuncParam(row) {
 	var size = row.length;
 	var numIter=0;
@@ -14,18 +28,19 @@ function estimateFuncParam(row) {
 			A[j] = Math.random();
 			Sum=Sum + A[j] + row[j];
 		}
-		var OA;
-		for (var k=1; k<row.length) {
+		var OA = [0,0];
+		for (var k=1; k<row.length; k++) {
 			OA[k] = 1- A[k]
 		}
-		for (var l=1; l<row.length-1) {
+		for (var l=1; l<row.length-1; l++) {
 			OSum=OSum+OA[l]+row[l];
 		}
-		if ( abs(Sum - row[size]) < abs(OSum - row[size]) ) {
-			thisError = abs(Sum - row[size]);
+		if ( Math.abs(Sum - row[size-1]) < Math.abs(OSum - row[size-1]) ) {
+			thisError = Math.abs(Sum - row[size-1]);
 			bestA = A;
-   		else
-   			thisError = abs(OSum - row[size]);
+   		}else{
+   			thisError = Math.abs(OSum - row[size-1]);
+
         	bestA = OA;
 		}
 		if (thisError<maxError) {

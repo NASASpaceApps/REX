@@ -27,7 +27,9 @@ function codeAddress(address, map_canvas) {
 
 
 $(function(){
-  console.log("vbkaslkfnas");
+
+  fakedata();
+
   map_canvas = $(".map_canvas");
   geocoder = new google.maps.Geocoder();
   var latlng = new google.maps.LatLng(43.647566,-79.384847);
