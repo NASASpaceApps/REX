@@ -3,7 +3,7 @@
 	left:0;
 	top: 20%;
 	height: 35%;
-	width: 2%;
+	width: 3em;
 	z-index: 10;
 	background-color: #434343;
 }
@@ -15,9 +15,14 @@
 	text-align: center;
 	text-decoration: none;
 	font-family: gothic-med;
-	margin: 340% 0 0 -300%;
-	width:700%;
+	width:10em;
+	height:3em;
+	line-height: 3em;
+	left:-3.5em;
+	top: 8em;
+	white-space: nowrap;
 	-webkit-transform: rotate(-90deg);
+	transform-origin: 100% 0;
 }
 .location_home img {
 	width:100%;
@@ -128,7 +133,7 @@
 	padding: 0 5% 0 10%;
 	color: white;
 	font-size: 10pt;
-	font-family: gothic-med;
+	font-family: gothic-light;
 }
 .background_info {
 	display: inline-block;
@@ -136,7 +141,7 @@
 	width:90%;
 	padding: 0 5%;
 	margin-top: 5%;
-	font-family: gothic-med;
+	font-family: gothic-light;
 }
 
 .facts_title {
@@ -179,6 +184,7 @@
 	margin-left: auto;
 	text-align: right;
 	width:43%;
+	font-family: gothic-med;
 }
 
 .winner_medium {

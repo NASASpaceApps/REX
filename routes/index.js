@@ -62,3 +62,8 @@ exports.sendCoordinates = function (req, res){
 exports.summary = function(req, res) {
 	res.render("summary", {});
 }
+exports.predict = function(req, res) {
+	var coordinates = [req.body.data[0], req.body.data[1]];
+	console.log(coordinates)
+	res.send(coordinates)
+}
