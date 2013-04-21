@@ -28,31 +28,23 @@ var wind = (function() {
 		this._parent.get(userLongitude, userLatitude, this.getRatingCallback)
 	}
 	/**
-	 * Wind Power Class	 | Wind Power Density (W/m2) | Resource Potential   
+	 * Wind Power Class  | Wind Power Density (W/m2) | Resource Potential   
 	 * -----------------|---------------------------|-----------------------
-	 *       1          |           0 - 200         |         Poor          
-	 *       2          |         200 - 300         |       Marginal        
-	 *       2          |         300 - 400         |         Fair          
-	 *       3          |         400 - 500         |         Good            
-	 *       3          |         500 - 600         |       Excellent           
-	 *       4          |         600 - 800         |      Outstanding          
-	 *       5          |           > 800           |        Superb               
-	 **/
+	 *       1          |           0 - 200         |     Not Available          
+	 *       2          |         200 - 300         |       Possible        
+	 *       2          |           > 300           |    Highly Probable          
+	 **/  
 	wind.prototype.getRatingCallback = function(data) {
 		console.log("wind: getRatingCallback ");
 		if(!data[0]){ // Data not available
 			console.log("wind: getRatingCallback: input data is empty")
 			windReturnFun(-1);
-		}else if(data[0].unit < 200){ // Poor
+		}else if(data[0].unit < 200){
 			windReturnFun(1);
-		}else if(data[0].unit < 400){ // Marginal, Fair
+		}else if(data[0].unit < 300){
 			windReturnFun(2);
-		}else if(data[0].unit < 600){ // Good, Excellent
+		}else{
 			windReturnFun(3);
-		}else if(data[0].unit < 800){ // Outstanding
-			windReturnFun(4);
-		}else{ // Superb
-			windReturnFun(5);
 		}
 	};
 	

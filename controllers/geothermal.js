@@ -40,16 +40,28 @@ var geothermal = (function() {
 		if(!data[0]){ // Data not available
 			console.log("geothermal: getRatingCallback: input data is empty")
 			geothermalReturnFun(-1);
-		}else if(data[0].unit < 2000){ // Low
-			geothermalReturnFun(1);
-		}else if(data[0].unit < 4000){ // Moderate
-			geothermalReturnFun(2);
-		}else if(data[0].unit < 5000){ // Good
-			geothermalReturnFun(3);
-		}else if(data[0].unit < 6000){ // Very Good
-			geothermalReturnFun(4);
-		}else{ // Excellent
-			geothermalReturnFun(5);
+		}else{
+			var minDepthRating;
+			if(data[0].unit < 6){
+				minDepthRating = 3;
+			}else if(data[0].unit <= 10){
+				minDepthRating = 2;
+			}else{
+				minDepthRating = 1;
+			}
+			var gradientRating;
+			if(data[0].unit < 20){
+				gradientRating = 1;
+			}else if(data[0].unit < 50){
+				gradientRating = 2;
+			}else{
+				gradientRating = 3;
+			}
+			if(minDepthRating < gradientRating){
+				geothermalReturnFun(minDepthRating);
+			}else{
+				geothermalReturnFun(gradientRating);
+			}
 		}
 	};
 	
