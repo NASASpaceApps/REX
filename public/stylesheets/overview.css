@@ -2,8 +2,9 @@
 	position: absolute;
 	left:0;
 	top: 20%;
-	height: 25%;
+	height: 35%;
 	width: 2%;
+	z-index: 10;
 	background-color: #434343;
 }
 
@@ -28,7 +29,7 @@
 	margin: 5% 0 0 0;
 	position: absolute;
 	bottom: 5px;
-	top: 0;
+	top: 10%;
 	left: 200%;
 	-webkit-transition: all 1s ease;
 }
@@ -74,7 +75,7 @@
 	font-family: gothic-med;
 	font-size:90%;
 	color: white;
-	padding: 1% 0 0 5%;
+	padding: 1% 0 0 5.5%;
 	background-color: #434343;
 }
 .rating_container {
@@ -157,4 +158,66 @@
 }
 .prof_links a {
 	color: white;
+}
+.winner_box {
+	width: 44%;
+	left: 21.5%;
+	top: -15%;
+	text-align: left;
+	padding:0 5%;
+	height: 10%;
+	position:absolute;
+	display:inline-block;
+	background-color: #7fcde2;
+}
+.winner_large {
+	font-size: 18pt;
+	height: 14pt;
+	display: inline-block;
+	margin-right: 10px;
+	margin-top: 10px;
+	margin-left: auto;
+	text-align: right;
+	width:43%;
+}
+
+.winner_medium {
+	font-size: 11pt;
+	height: 14pt;
+	width:47%;
+	margin: 7px 0 0 0;
+	display: inline-block;
+	text-align: left;
+}
+.loading_spinner {
+	width:100%;
+	position: absolute;
+	top:55%;
+	text-align: center;
+}
+.summary_info_box {
+	position: absolute;
+	left: 3%;
+	color: white;
+	font-size: 11pt;
+}
+.prof_map {
+	position:absolute;
+	bottom:-5px;
+	left: -20%;
+	width: 60%;
+}
+#close_map{
+	padding: 10px 0;
+	font-size:1em;
+	color: white;
+	background-color: #434343;
+	height:1em;
+	position: absolute;
+	top: 35%;
+	text-align: center;
+	width:70px;
+	right: -70px;
+	display: none;
+	text-decoration: none;
 }

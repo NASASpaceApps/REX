@@ -1,11 +1,11 @@
 body {
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-  background-image: url("../images/background.png");
   background-size: 100%;
   width:100%;
   height:100%;
   margin: 0;
   overflow: hidden;
+  background-color": "#EEEEEE";
 }
 a {
   color: #00b7ff;
@@ -40,7 +40,21 @@ a {
     font-family: gothic-med;
 
 }
+body {
+  font-family: gothic-med;
+}
+.background_image {
+  position:absolute;
+  width:100%;
+  height:100%;
+  -webkit-transition: all 0.9s ease;
+  opacity: 1;
+}
+.background_image img{
+  width:100%;
+  height:100%;
 
+}
 #header{
   width:100%;
   height:100px;
@@ -272,12 +286,12 @@ a {
 }
 
 .summaryAdditionalResources {
-  color: #fff;
+  color: #9Fce62;
   position: absolute;
   font-family: gothic-med;
   font-size: 16pt;
   right: 7%;
-  bottom:25%;
+  bottom:15%;
 }
 
 #back img {
