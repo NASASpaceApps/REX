@@ -227,3 +227,10 @@
 	display: none;
 	text-decoration: none;
 }
+.summary_graph_container {
+	position: absolute;
+	top:45%;
+	left: 0;
+	height:50%;
+	width:70%;
+}

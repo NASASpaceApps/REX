@@ -1,3 +1,4 @@
+google.load('visualization', '1.0', {'packages':['corechart']})
 $(document).ready(function() {
 	$(".get_started_button").bind("click", function(e) {
 		e.preventDefault();
@@ -153,11 +154,38 @@ $(document).ready(function() {
 													type: 'post',
 													url: '/predict',
 													data: {data: coordinates},
-													success: function(data) {
+													success: function(d) {
+										        var data = new google.visualization.DataTable();
+										        data.addColumn('string', 'Topping');
+						                data.addColumn('number', 'Slices');
+						                data.addRows([
+						                  ['Mushrooms', 3],
+						                  ['Onions', 1],
+						                  ['Olives', 1],
+						                  ['Zucchini', 1],
+						                  ['Pepperoni', 2]
+						                ]);
 
+						                // Set chart options
+						                var options = {'title':'Resource Potential Over Time',
+						                               'width':$("#graph_container").width(),
+						                               'height':$("#graph_container").height(),
+						                             		'colors': ['#9FCE62', '#5eb38c'],
+						                             		backgroundColor: '#434343',
+						                             		animation: {duration: 3, easing: 'in'},
+						                             		hAxis: {title: "Year", titleTextStyle: {color: 'white'}, textStyle: {color: "white"}, baselineColor: 'white', gridlines: {color: 'white'}},
+						                             		vAxis: {title: "kwh", titleTextStyle: {color: 'white'}, textStyle: {color: "white"}},
+						                             		titleTextStyle: {color: "white"},
+						                             		legend: {position: 'none'}
+																					};
+
+						                // Instantiate and draw our chart, passing in some options.
+						                var chart = new google.visualization.LineChart(document.getElementById('graph_container'));
+						                chart.draw(data, options);
 													}
 												})
 											})
+							       
 											console.log(resource)
 											if (resource == "wind") {
 												$("#kwhTitle").html((ratings.windInfo[0].unit / 1000).toFixed(2) + " kwh/m&#178;");
