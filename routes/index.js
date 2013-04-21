@@ -32,11 +32,9 @@ exports.sendCoordinates = function (req, res){
 	windObject.getRating(req.body.data[0], req.body.data[1], function(a) {
 		console.log(a);
 		windRating = a;
-		//res.send({"windRating": windRating})
 		solarObject.getRating(req.body.data[0], req.body.data[1], function(a) {
 			console.log(a);
 			solarRating = a;
-			//res.send({"windRating": windRating})
 			geoObject.getRating(req.body.data[0], req.body.data[1], function(a) {
 				console.log(a);
 				geoRating = a;

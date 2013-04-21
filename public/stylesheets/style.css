@@ -246,7 +246,7 @@ a {
   width:51%;
   background-color: #5F5F61;
   display: inline-block;
-
+  position: relative;
 }
 
 .summaryHeadBigText {
@@ -255,7 +255,7 @@ a {
   position: absolute;
   font-family: gothic-med;
   font-size: 18pt;
-  top:6%;
+  top:10%;
   padding: 0 0 0 10%;
   text-align: left;
 }
@@ -276,8 +276,8 @@ a {
   position: absolute;
   font-family: gothic-med;
   font-size: 16pt;
-  left: 68%;
-  bottom:10%;
+  right: 7%;
+  bottom:25%;
 }
 
 #back img {

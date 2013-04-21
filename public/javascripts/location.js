@@ -29,7 +29,7 @@ function codeAddress(address, map_canvas) {
 
 $(function(){
 
-  fakedata();
+  //fakedata();
 
   map_canvas = $(".map_canvas");
   geocoder = new google.maps.Geocoder();

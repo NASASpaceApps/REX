@@ -90,7 +90,7 @@ function PredictFuture(SunData){
 		var isErrorLow = 1 - (maxError < 1? maxError : 1);
 		// Predict the next year
 		//SunDataFuture(i,1)  = (1-isErrorLow)*mean(a) + isErrorLow*sum(A.*a(1:length(a)-1));
-		SunDataFuture[i][1] = (1 - isErrorLow) * mean(a) + isErrorLow * sum(vectorMultiplication(A,a,a.length-1);
+		SunDataFuture[i][1] = (1 - isErrorLow) * mean(a) + isErrorLow * sum(vectorMultiplication(A,a,a.length-1));
 		// Predict the second year
 		//b = [a(2:length(a)) SunDataFuture(i,1)];
 		var b = Array(a.length);
@@ -99,7 +99,7 @@ function PredictFuture(SunData){
 		}
 		b[a.length-1] = SunDataFuture(i,1);
 		//SunDataFuture(i,2) = (1-isErrorLow)*mean(b) + isErrorLow*sum(A.*b(1:length(b)-1));
-		SunDataFuture(i,2) = (1 - isErrorLow) * mean(b) + isErrorLow * sum(vectorMultiplication(A,a,a.length-1);
+		SunDataFuture(i,2) = (1 - isErrorLow) * mean(b) + isErrorLow * sum(vectorMultiplication(A,a,a.length-1));
 		// Predict the third year
 		//b = [a(3:length(a)) SunDataFuture(i,1) SunDataFuture(i,2)];
 		for(var x = 0; x < data.length - 2; x++){
@@ -108,7 +108,7 @@ function PredictFuture(SunData){
 		b[a.length-2] = SunDataFuture(i,1);
 		b[a.length-1] = SunDataFuture(i,2);
 		//SunDataFuture(i,3) = (1-isErrorLow)*mean(b) + isErrorLow* sum(A.*b(1:length(b)-1));
-		SunDataFuture(i,3) = (1 - isErrorLow) * mean(b) + isErrorLow * sum(vectorMultiplication(A,a,a.length-1);
+		SunDataFuture(i,3) = (1 - isErrorLow) * mean(b) + isErrorLow * sum(vectorMultiplication(A,a,a.length-1));
 	}
 	return SunDataFuture;
 }
