@@ -15,6 +15,8 @@ Featuring a kick-ass UI, a rating system, "Brownian-walk Monte Carlo" simulation
 
 [Landing Page Screenshot](https://github.com/NASASpaceApps/REX/blob/master/public/images/SS1.jpg) 
 
+[And a presentation of the application can be found here](http://spaceappschallenge.org/project/rex)
+
 ## How to try it ##
 
 Install node and mysql. Clone this repo onto your local drive. Using mysql (as described in the wiki), load the db. Then, In the root of this directory in cmd/terminal, type 'node app.js'. Voila!
